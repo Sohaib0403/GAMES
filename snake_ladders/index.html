@@ -1,0 +1,268 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui, width = device-width'
+        name='viewport' />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="HandheldFriendly" content="true" />
+
+    <title>Snakes & Ladders</title>
+
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="css/player.css" />
+
+    <!-- Libs Starts -->
+    <script type="text/javascript" src="com/libs/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="com/libs/jquery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="com/libs/device/device.min.js"></script>
+
+    <!-- Loader Libraries Starts -->
+    <script type="text/javascript" src="com/libs/preloader/jquery.html5Loader.min.js"></script>
+    <script type="text/javascript" src="com/libs/preloader/animation/jquery.big-counter.js"></script>
+    <script type="text/javascript" src="com/libs/preloader/Main.class.js"></script>
+    <script type="text/javascript" src="com/libs/preloader/configPreload.js"></script>
+    <!--Loader Libraries Ends -->
+
+    <!-- Libs Ends -->
+
+    <script type="text/javascript" src="com/lo/config.js"></script>
+    <script type="text/javascript" src="version.js"></script>
+    <script type="text/javascript" src="com/lo/commonFunctions.js"></script>
+    <script type="text/javascript" src="com/lo/playerController.js"></script>
+    <script type="text/javascript" src="com/lo/screenController.js"></script>
+
+    <script type="text/javascript" src="com/libs/jquery/jquery.ui.touch-punch.js"></script>
+
+    <script>
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
+        var lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            var now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 50) { event.preventDefault(); }
+            lastTouchEnd = now;
+        }, { passive: false });
+
+    </script>
+</head>
+
+<body>
+    <!-- Main Container : Starts -->
+    <div id="DvMainCont">
+        <!-- Screen Container : Starts -->
+        <div id="DvScrCont">
+            <!-- screen 0 : starts -->
+            <div id="DvScr0" class="ClsScreenBg" style="display: none;">
+                <div id="DvPanel" class="ClsPanel">
+                    <div id="DvTextBg0">
+                        <!-- <div id="DvText0">What's the Word?</div> -->
+                    </div>
+                    <div id="DvLogo"></div>
+                    <div id="DvStartBtn"></div>
+                </div>
+            </div>
+            <!-- screen 0 : ends -->
+
+
+            <!-- screen 1 : starts -->
+            <div id="DvScr1" class="ClsScreenBg" style="display: none;">
+                <div id="DvPanel1" class="ClsPanel">
+                    <div id="DvTextBg1">
+                        <div id="DvText1"></div>
+                    </div>
+                    <div id="UserVsComputer"></div>
+                    <div id="UserVsUser"></div>
+                </div>
+
+            </div>
+            <!-- screen 1 : ends -->
+
+            <!-- screen 2 : starts -->
+            <div id="DvScr2" style="display: none;">
+                <div id="DvPanel2" class="ClsPanel">
+                    <div id="DvTextBg2">
+                        <div id="DvText2"></div>
+                    </div>
+
+                    <div id="player1" val="red" class="selectplayer"></div>
+                    <div id="player2" val="blue" class="selectplayer"></div>
+                    <div id="player3" val="yellow" class="selectplayer"></div>
+                    <div id="player4" val="green" class="selectplayer"></div>
+
+                    <div id="playBtn"></div>
+                    <div id="backBtn"></div>
+                </div>
+            </div>
+            <!-- screen 2 : ends -->
+
+            <!-- screen 3 : starts -->
+            <div id="DvScr3" style="display: none;">
+                <div id="DvPanel3">
+                    <div id="DvTextBg3">
+                        <div id="DvText3"></div>
+                    </div>
+                    <div id="board" class="board">
+                        <div id="runPlayer1"></div>
+                        <div id="runPlayer2"></div>
+                        <div id="runPlayer3"></div>
+                        <div id="runPlayer4"></div>
+                    </div>
+                    <div id="star1"></div>
+                    <div id="star2"></div>
+                    <div id="star3"></div>
+                    <div id="star4"></div>
+                    <div id="star5"></div>
+                    <div id="star6"></div>
+
+                    <div id="ladder1"></div>
+                    <div id="ladder2"></div>
+                    <div id="ladder3"></div>
+
+                    <div id="swim1"></div>
+                    <div id="swim2"></div>
+                    <div id="swim3"></div>
+
+                    <div id="starttxt"></div>
+                    <div id="finishtxt"></div>
+
+                    <div id="sideBG"></div>
+                    <div id="clicktoroll">CLICK TO PLAY</div>
+                    <div id="dice">
+                        <div id="dice_1">
+                            <span class="dot dot1"></span>
+                        </div>
+                        <div id="dice_2">
+                            <span class="dot dot1"></span>
+                            <span class="dot dot2"></span>
+                        </div>
+                        <div id="dice_3">
+                            <span class="dot dot1"></span>
+                            <span class="dot dot2"></span>
+                            <span class="dot dot3"></span>
+                        </div>
+                        <div id="dice_4">
+                            <span class="dot dot1"></span>
+                            <span class="dot dot2"></span>
+                            <span class="dot dot3"></span>
+                            <span class="dot dot4"></span>
+                        </div>
+                        <div id="dice_5">
+                            <span class="dot dot1"></span>
+                            <span class="dot dot2"></span>
+                            <span class="dot dot3"></span>
+                            <span class="dot dot4"></span>
+                            <span class="dot dot5"></span>
+                        </div>
+                        <div id="dice_6">
+                            <span class="dot dot1"></span>
+                            <span class="dot dot2"></span>
+                            <span class="dot dot3"></span>
+                            <span class="dot dot4"></span>
+                            <span class="dot dot5"></span>
+                            <span class="dot dot6"></span>
+                        </div>
+                    </div>
+                    <div id="mydice">
+                        <div id="mydice_1">
+                            <span class="dot dot1"></span>
+                        </div>
+                        <div id="mydice_2">
+                            <span class="dot dot1"></span>
+                            <span class="dot dot2"></span>
+                        </div>
+                        <div id="mydice_3">
+                            <span class="dot dot1"></span>
+                            <span class="dot dot2"></span>
+                            <span class="dot dot3"></span>
+                        </div>
+                        <div id="mydice_4">
+                            <span class="dot dot1"></span>
+                            <span class="dot dot2"></span>
+                            <span class="dot dot3"></span>
+                            <span class="dot dot4"></span>
+                        </div>
+                        <div id="mydice_5">
+                            <span class="dot dot1"></span>
+                            <span class="dot dot2"></span>
+                            <span class="dot dot3"></span>
+                            <span class="dot dot4"></span>
+                            <span class="dot dot5"></span>
+                        </div>
+                        <div id="mydice_6">
+                            <span class="dot dot1"></span>
+                            <span class="dot dot2"></span>
+                            <span class="dot dot3"></span>
+                            <span class="dot dot4"></span>
+                            <span class="dot dot5"></span>
+                            <span class="dot dot6"></span>
+                        </div>
+                    </div>
+                    <div id="nowplaying"></div>
+                    <div id="playerouter">
+                        <div id="gameplayer1"></div>
+                        <div id="gameplayer2"></div>
+                        <div id="gameplayer3"></div>
+                        <div id="gameplayer4"></div>
+                    </div>
+                    <div id="activeplayerouter">
+                        <div id="activeplayer"></div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- screen 3 : ends -->
+
+            <!-- screen 4 : starts -->
+            <div id="DvScr4" class="ClsScreenBg" style="display: none;">
+                <div id="DvPanel4" >
+                    <div id="DvTextBg4">
+                        <div id="DvText4">
+                        </div>
+                    </div>
+                    <div id="replay"></div>
+                    <div id="restart"></div>
+                </div>
+
+            </div>
+            <!-- screen 4 : ends -->
+
+
+            <div id="DvCoverDiv" style="display: none;"></div>
+        </div>
+        <!-- Screen Container : Ends -->
+
+        <!-- Initial Screen Container : Starts -->
+        <!-- <div id = "DvInitialScreen">
+                <div id="DvInitBtn"></div>
+            </div> -->
+        <!-- Initial Screen Container : Ends -->
+
+    </div>
+    <!-- Main Container : Ends -->
+
+
+
+
+    <!--Preloader : Starts-->
+    <div class="row">
+        <div id="html5Loader" class="col-sm-12">
+            <div id="DvLoaderCont">
+                <div id="DvLoaderProgress"></div>
+                <div id="DvLoaderProgressBgText"> Loading ... </div>
+            </div>
+        </div>
+    </div>
+    <!--Preloader : Ends-->
+    <audio id="AudInit" src="assets/audios/bgm.mp3" type="audio/mpeg" loop></audio>
+    <audio id="AudComplete" src="assets/audios/winsound.wav" type="audio/mpeg"></audio>
+    <audio id="Auddiceroll" src="assets/audios/diceroll.wav" type="audio/mpeg"></audio>
+    <audio id="Audlandsound" src="assets/audios/landsound.wav" type="audio/mpeg"></audio>
+    
+</body>
+
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obstacle Avoidance Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .game-container {
+            width: min(780px, 95vw);
+            height: min(750px, 90vh);
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border: 3px solid #00d4ff;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .game-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .ui-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .score, .level, .speed {
+            color: #00d4ff;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+        }
+
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: #00d4ff;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            display: none;
+            z-index: 20;
+            border: 2px solid #00d4ff;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+
+        .game-over h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 0, 100, 0.8);
+        }
+
+        .game-over p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .restart-btn {
+            background: linear-gradient(45deg, #00d4ff, #ff0080);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            font-weight: bold;
+        }
+
+        .restart-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00d4ff;
+            text-align: center;
+            font-size: 14px;
+            z-index: 10;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 800px) {
+            .game-container {
+                width: 95vw;
+                height: 80vh;
+                border-width: 2px;
+            }
+            
+            .score, .level, .speed {
+                font-size: 16px;
+            }
+            
+            .game-over h2 {
+                font-size: 28px;
+            }
+            
+            .game-over p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <canvas class="game-canvas" id="gameCanvas"></canvas>
+        
+        <div class="ui-overlay">
+            <div class="score">Score: <span id="scoreValue">0</span></div>
+            <div class="level">Level: <span id="levelValue">1</span></div>
+            <div class="speed">Speed: <span id="speedValue">1.0x</span></div>
+        </div>
+        
+        <div class="game-over" id="gameOverScreen">
+            <h2>Game Over!</h2>
+            <p>Final Score: <span id="finalScore">0</span></p>
+            <p>Level Reached: <span id="finalLevel">1</span></p>
+            <button class="restart-btn" onclick="startGame()">Play Again</button>
+        </div>
+        
+        <div class="controls">
+            Use ← → Arrow Keys or A/D to move • Avoid the obstacles!
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const gameOverScreen = document.getElementById('gameOverScreen');
+
+        // Responsive canvas sizing
+        function resizeCanvas() {
+            const container = document.querySelector('.game-container');
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+        }
+
+        let gameState = {
+            isRunning: false,
+            score: 0,
+            level: 1,
+            baseSpeed: 2,
+            currentSpeed: 2,
+            lastSpeedIncrease: 0,
+            obstacles: [],
+            particles: []
+        };
+
+        let player = {
+            x: 0,
+            y: 0,
+            width: 30,
+            height: 30,
+            speed: 8,
+            color: '#00d4ff',
+            trail: []
+        };
+
+        let keys = {
+            left: false,
+            right: false
+        };
+
+        // Initialize game
+        function init() {
+            resizeCanvas();
+            player.x = canvas.width / 2 - player.width / 2;
+            player.y = canvas.height - 80;
+            startGame();
+        }
+
+        // Start/restart game
+        function startGame() {
+            gameState = {
+                isRunning: true,
+                score: 0,
+                level: 1,
+                baseSpeed: 2,
+                currentSpeed: 2,
+                lastSpeedIncrease: Date.now(),
+                obstacles: [],
+                particles: []
+            };
+            
+            player.x = canvas.width / 2 - player.width / 2;
+            player.y = canvas.height - 80;
+            player.trail = [];
+            
+            gameOverScreen.style.display = 'none';
+            updateUI();
+            gameLoop();
+        }
+
+        // Create obstacle
+        function createObstacle() {
+            const minWidth = 40;
+            const maxWidth = 100;
+            const width = Math.random() * (maxWidth - minWidth) + minWidth;
+            const x = Math.random() * (canvas.width - width);
+            
+            return {
+                x: x,
+                y: -50,
+                width: width,
+                height: 30,
+                speed: gameState.currentSpeed,
+                color: `hsl(${Math.random() * 360}, 80%, 60%)`,
+                glow: Math.random() * 20 + 10
+            };
+        }
+
+        // Create particle effect
+        function createParticles(x, y, count = 10) {
+            for (let i = 0; i < count; i++) {
+                gameState.particles.push({
+                    x: x + Math.random() * 20 - 10,
+                    y: y + Math.random() * 20 - 10,
+                    vx: (Math.random() - 0.5) * 10,
+                    vy: (Math.random() - 0.5) * 10,
+                    life: 1,
+                    decay: 0.02,
+                    color: `hsl(${Math.random() * 60 + 300}, 80%, 70%)`
+                });
+            }
+        }
+
+        // Update game state
+        function update() {
+            if (!gameState.isRunning) return;
+
+            const now = Date.now();
+            
+            // Increase speed every minute (60 seconds)
+            if (now - gameState.lastSpeedIncrease > 60000) {
+                gameState.currentSpeed += 0.5;
+                gameState.level++;
+                gameState.lastSpeedIncrease = now;
+                createParticles(canvas.width / 2, canvas.height / 2, 20);
+            }
+
+            // Player movement
+            if (keys.left && player.x > 0) {
+                player.x -= player.speed;
+            }
+            if (keys.right && player.x < canvas.width - player.width) {
+                player.x += player.speed;
+            }
+
+            // Add player trail
+            player.trail.push({x: player.x + player.width/2, y: player.y + player.height/2});
+            if (player.trail.length > 8) player.trail.shift();
+
+            // Create obstacles randomly
+            if (Math.random() < 0.02 + (gameState.level * 0.003)) {
+                gameState.obstacles.push(createObstacle());
+            }
+
+            // Update obstacles
+            gameState.obstacles.forEach((obstacle, index) => {
+                obstacle.y += obstacle.speed;
+                
+                // Remove obstacles that are off screen
+                if (obstacle.y > canvas.height + 50) {
+                    gameState.obstacles.splice(index, 1);
+                    gameState.score += 10;
+                }
+                
+                // Collision detection
+                if (obstacle.x < player.x + player.width &&
+                    obstacle.x + obstacle.width > player.x &&
+                    obstacle.y < player.y + player.height &&
+                    obstacle.y + obstacle.height > player.y) {
+                    
+                    createParticles(player.x + player.width/2, player.y + player.height/2, 20);
+                    gameOver();
+                }
+            });
+
+            // Update particles
+            gameState.particles.forEach((particle, index) => {
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+                particle.life -= particle.decay;
+                particle.vx *= 0.98;
+                particle.vy *= 0.98;
+                
+                if (particle.life <= 0) {
+                    gameState.particles.splice(index, 1);
+                }
+            });
+
+            updateUI();
+        }
+
+        // Render game
+        function render() {
+            // Clear canvas with gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#0a0a0a');
+            gradient.addColorStop(1, '#1a1a2e');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw stars/background effects
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            for (let i = 0; i < 50; i++) {
+                const x = (i * 137.5) % canvas.width;
+                const y = ((Date.now() * 0.1 + i * 50) % (canvas.height + 100)) - 50;
+                ctx.fillRect(x, y, 1, 1);
+            }
+
+            // Draw player trail
+            player.trail.forEach((point, index) => {
+                const alpha = (index / player.trail.length) * 0.5;
+                const size = (index / player.trail.length) * 5 + 2;
+                ctx.fillStyle = `rgba(0, 212, 255, ${alpha})`;
+                ctx.beginPath();
+                ctx.arc(point.x, point.y, size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Draw player with glow effect
+            ctx.shadowColor = player.color;
+            ctx.shadowBlur = 20;
+            ctx.fillStyle = player.color;
+            ctx.beginPath();
+            ctx.arc(player.x + player.width/2, player.y + player.height/2, player.width/2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            // Draw obstacles with glow
+            gameState.obstacles.forEach(obstacle => {
+                ctx.shadowColor = obstacle.color;
+                ctx.shadowBlur = obstacle.glow;
+                ctx.fillStyle = obstacle.color;
+                ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+                
+                // Add inner highlight
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, 5);
+            });
+            ctx.shadowBlur = 0;
+
+            // Draw particles
+            gameState.particles.forEach(particle => {
+                ctx.fillStyle = particle.color.replace('70%', `${particle.life * 70}%`);
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.life * 3, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Draw border glow
+            ctx.strokeStyle = '#00d4ff';
+            ctx.lineWidth = 2;
+            ctx.shadowColor = '#00d4ff';
+            ctx.shadowBlur = 10;
+            ctx.strokeRect(5, 5, canvas.width - 10, canvas.height - 10);
+            ctx.shadowBlur = 0;
+        }
+
+        // Game loop
+        function gameLoop() {
+            update();
+            render();
+            
+            if (gameState.isRunning) {
+                requestAnimationFrame(gameLoop);
+            }
+        }
+
+        // Game over
+        function gameOver() {
+            gameState.isRunning = false;
+            document.getElementById('finalScore').textContent = gameState.score;
+            document.getElementById('finalLevel').textContent = gameState.level;
+            gameOverScreen.style.display = 'block';
+        }
+
+        // Update UI elements
+        function updateUI() {
+            document.getElementById('scoreValue').textContent = gameState.score;
+            document.getElementById('levelValue').textContent = gameState.level;
+            document.getElementById('speedValue').textContent = (gameState.currentSpeed / gameState.baseSpeed).toFixed(1) + 'x';
+        }
+
+        // Event listeners
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'a':
+                case 'A':
+                    keys.left = true;
+                    e.preventDefault();
+                    break;
+                case 'ArrowRight':
+                case 'd':
+                case 'D':
+                    keys.right = true;
+                    e.preventDefault();
+                    break;
+                case ' ':
+                    e.preventDefault();
+                    break;
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'a':
+                case 'A':
+                    keys.left = false;
+                    break;
+                case 'ArrowRight':
+                case 'd':
+                case 'D':
+                    keys.right = false;
+                    break;
+            }
+        });
+
+        // Touch controls for mobile
+        let touchStartX = 0;
+        let touchCurrentX = 0;
+
+        canvas.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            e.preventDefault();
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            touchCurrentX = e.touches[0].clientX;
+            const diff = touchCurrentX - touchStartX;
+            
+            if (Math.abs(diff) > 10) {
+                keys.left = diff < 0;
+                keys.right = diff > 0;
+            }
+            e.preventDefault();
+        });
+
+        canvas.addEventListener('touchend', (e) => {
+            keys.left = false;
+            keys.right = false;
+            e.preventDefault();
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            player.x = Math.min(player.x, canvas.width - player.width);
+        });
+
+        // Start the game
+        init();
+    </script>
+</body>
+</html>

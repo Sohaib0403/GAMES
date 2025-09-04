@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Space Gems</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="game-container">
+    <div id="background"></div>
+    <div id="player"></div>
+    <div id="crystals"></div>
+    <div id="asteroids"></div>
+    <div id="score">Score: 0</div>
+
+    <div class="start">
+      <div class="logo"></div>
+      <div class="statbutton">
+        <button class="button-4" role="button">
+          <span class="text">let's go</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="gameOverPopup" class="popup hide">
+      <div class="popup-content">
+        <h2>Game Over!</h2>
+        <p id="finalScore">Score: 0</p>
+        <button class="button-4" onclick="replayGame()">
+           <span class="text">Replay</span>
+        </button>
+      </div>
+    </div>
+ 
+
+    <button class="ctrl-btn left" data-dir="left">◀</button>
+    <button class="ctrl-btn down" data-dir="down">▼</button>
+    <button class="ctrl-btn right" data-dir="right">▶</button>
+    <button class="ctrl-btn up" data-dir="up">▲</button>
+
+    <button id="pauseBtn" class="pause-button">⏸</button>
+
+
+  </div>
+
+
+  <script src="resize.js"></script>
+  <script src="script.js"></script>
+  
+</body>
+
+</html>

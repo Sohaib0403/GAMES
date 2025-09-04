@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Sorting Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="scale-wrapper">
+        <div class="game-container">
+            <div class="start-screen" id="start-screen">
+                <div class="game-title">🍎 Food Sorting Game 🥕</div>
+                <div class="game-subtitle">Healthy vs Unhealthy Challenge!</div>
+                <div class="start-instructions">
+                    Drag foods into the correct baskets!<br>
+                    🥗 Put healthy foods in the GREEN basket<br>
+                    🍔 Put unhealthy foods in the RED basket<br><br>
+                    ⏰ You have 3 minutes to sort as many foods as possible!<br>
+                    💖 You have 3 lives - be careful with your choices!
+                </div>
+                <button class="start-btn" onclick="startGame()">🎮 START GAME</button>
+            </div>
+
+            <div class="game-content" id="game-content">
+                <div class="header">
+                    <div class="score">Score: <span id="score">0</span></div>
+                    <div class="timer" id="timer">3:00</div>
+                    <div class="lives">
+                        <span>Lives:</span>
+                        <div id="lives-display">
+                            <span class="life-heart">♥</span>
+                            <span class="life-heart">♥</span>
+                            <span class="life-heart">♥</span>
+                        </div>
+                    </div>
+                    <button class="home-btn" onclick="goHome()">🏠 Home</button>
+                </div>
+
+                <div class="game-area">
+                    <div class="instructions">
+                        Drag the foods into the correct baskets! 🍎🥕 vs 🍔🍭
+                    </div>
+
+                    <div class="baskets">
+                        <div class="basket healthy-basket" id="healthy-basket">
+                            <div>🥗 HEALTHY</div>
+                            <div style="font-size: 16px;">Good for you!</div>
+                        </div>
+                        <div class="basket unhealthy-basket" id="unhealthy-basket">
+                            <div>🍔 UNHEALTHY</div>
+                            <div style="font-size: 16px;">Not so good!</div>
+                        </div>
+                    </div>
+
+                    <div class="foods-container" id="foods-container">
+                        <!-- Food items will be generated here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="feedback" id="feedback"></div>
+
+            <div class="game-over-screen" id="game-over-screen">
+                <div class="game-over-title">Game Over!</div>
+                <div class="health-status" id="health-status"></div>
+                <button class="replay-btn" onclick="restartGame()">🔄 Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function resizeGameContainer() {
+            const gameContainer = document.querySelector('.game-container');
+            if (!gameContainer) return;
+
+            // Fixed base dimensions
+            const baseWidth = 780;
+            const baseHeight = 750;
+
+            // Screen size
+            const availableWidth = window.innerWidth;
+            const availableHeight = window.innerHeight;
+
+            // Keep aspect ratio
+            const scale = Math.min(
+                availableWidth / baseWidth,
+                availableHeight / baseHeight
+            );
+
+            // Apply scaling
+            gameContainer.style.transform = `scale(${scale})`;
+            gameContainer.style.transformOrigin = "top left";
+
+            // Center it
+            const scaledWidth = baseWidth * scale;
+            const scaledHeight = baseHeight * scale;
+
+            gameContainer.style.position = "absolute";
+            gameContainer.style.left = `${(availableWidth - scaledWidth) / 2}px`;
+            gameContainer.style.top = `${(availableHeight - scaledHeight) / 2}px`;
+        }
+
+        // Run on load + resize
+        window.addEventListener("load", resizeGameContainer);
+        window.addEventListener("resize", resizeGameContainer);
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.5, user-scalable=yes">
+
+	<title>Next Number</title>
+
+	<link rel="stylesheet" type="text/css" href="media/jquery/animate.min.css" />
+	<link rel="stylesheet" type="text/css" href="media/style.css" />
+
+
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="row">
+		<div id="html5Loader" class="col-sm-12">
+			<div id="DvLoaderCont">
+				<div id="DvLoaderProgress"></div>
+			</div>
+		</div>       
+	</div>  
+	<div id="wrapper">
+
+		<div id="load_images" style="width:0px;height:0px;opacity: 0;">
+			<img src="media/images/bg.png">
+			<img src="media/images/homebotton.png">
+			<img src="media/images/cursor.png">
+			<img src="media/images/blank.png">
+			
+			<img src="media/images/mutemusbtn.png">
+			<img src="media/images/playmusbtn.png">
+			<img src="media/images/reset.png">
+			<img src="media/images/tryagain.png">
+			<img src="media/images/welldone.png">
+			
+		</div>
+
+		<div id="game_container">
+			<div id="questiontxt" class="questiontxt"></div>
+			<div id="home_btn" class="home_btn"></div>
+			<div id="number_container"></div>
+			<div id="submit_btn" class="submit_btn">
+				<div id="submitInner" class="submitInner">
+					<div id="submitTxt" class="submitTxt"></div>
+				</div>
+			</div>
+			<div id="tryagn_btn" class="tryagn_btn">
+				<div id="tryInner" class="tryInner">
+					<div id="tryTxt" class="tryTxt"></div>
+				</div>
+			</div>
+			<div id="showanswer_btn" class="showanswer_btn">
+				<div id="showanswerInner" class="showanswerInner">
+					<div id="showanswerTxt" class="showanswerTxt">Result</div>
+				</div>
+			</div>
+
+			<div id="weldone_btn" class="weldone_btn">
+				<div id="weldoneInner" class="weldoneInner">
+					<div id="weldoneTxt" class="weldoneTxt">Well Done</div>
+				</div>
+			</div>
+
+			<div id="welldonebg">
+				<div id="welldone" class="welldone"></div>
+			</div>
+
+			<div id="tryagainbg">
+				<div id="tryfeedback" class="tryfeedback"></div>
+			</div>
+
+			<div id="ins_arrow" class="ins_arrow"></div>
+			<div id="play_btn" class="play_btn">
+			</div>
+
+			<div id="play_audio" class="play_audio"></div>
+			<div id="pause_audio" class="pause_audio"></div>
+
+		</div>
+		<div id="stopclick"></div>
+		
+		
+	</div>
+	
+	<audio id="bgm" src="media/audio/bgm.mp3" type="audio/mpeg"></audio>
+	<audio id="tryagain" src="media/audio/tryagain.mp3" type="audio/mpeg"></audio>
+    <audio id="welldone" src="media/audio/welldone.mp3" type="audio/mpeg"></audio>
+	
+	<script type="text/javascript" src="media/jquery/jquery.js"></script>
+
+	<script type="text/javascript" src="media/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="media/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="media/jquery/jquery.ui.touch-punch.js"></script>
+
+	 <!-- Loader Libraries Starts -->
+	 <script type="text/javascript" src="media/preloader/jquery.html5Loader.min.js"></script>
+	 <script type="text/javascript" src="media/preloader/animation/jquery.big-counter.js"></script>     
+	 <script type="text/javascript" src="media/preloader/Main.class.js"></script>
+	 <script type="text/javascript" src="media/preloader/configPreload.js"></script> 
+	 <!--Loader Libraries Ends --> 
+
+	<script type="text/javascript" src="media/data/data.js"></script>
+	<script type="text/javascript" src="media/custom.js"></script>
+</body>
+
+</html>

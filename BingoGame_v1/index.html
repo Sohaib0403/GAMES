@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta
+		content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui, width = device-width'
+		name='viewport' />
+	<title>Bingo Game</title>
+	<link rel="stylesheet" type="text/css" href="media/jquery/animate.min.css" />
+	<link rel="stylesheet" type="text/css" href="media/style.css" />
+	<script>
+		document.addEventListener('touchmove', function (e) {
+			e.preventDefault();
+		}, { passive: false });
+		var lastTouchEnd = 0;
+		document.addEventListener('touchend', function (event) {
+			var now = (new Date()).getTime();
+			if (now - lastTouchEnd <= 50) {
+				event.preventDefault();
+			}
+			lastTouchEnd = now;
+		}, { passive: false });
+	</script>
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="row">
+		<div id="html5Loader" class="col-sm-12">
+			<div id="DvLoaderCont">
+				<div id="DvLoaderProgress"></div>
+			</div>
+		</div>       
+	</div>  
+	<div id="wrapper">
+		<div id="game_container">
+			<div id="start_page" class="start_page">
+				<div id="startbtn" class="startbtn"></div>
+			</div>
+			<div id="bingo_card" class="bingo_card"></div>
+			<div id="whitebg" class="whitebg"></div>
+
+			
+			<div id="maincard">
+				<div id="number_container">
+				</div>
+				<div id="ques_bingo_card" class="ques_bingo_card">
+					<div id="show_bingo_dots" class="show_bingo_dots">
+					</div>
+				</div>
+			</div>
+			
+
+
+			<div id="welldonebg">
+				<div id="mystar">
+					<i id="mystar1" class="star"></i>
+					<i id="mystar2" class="star"></i>
+					<i id="mystar3" class="star"></i>
+				</div>
+				<div id="playagain" class="playagain"></div>
+			</div>
+
+			<div id="main_menu_screen">
+				<div id="exitgame" class="exitgame">Do you want to exit?</div>
+				<div id="yesexit" class="yesexit">YES</div>
+				<div id="noexit" class="noexit">NO</div>
+			</div>
+
+			<div id="ins_popup" class="ins_popup">
+				<div id="ins_popup_outer" class="ins_popup_outer">
+					<div id="ins_popup_text" class="ins_popup_text"></div>
+				</div>
+			</div>
+			<div id="additional_btn" class="additional_btn"></div>
+			<div id="teena_button" class="teena_button"></div>
+		</div>
+		<div id="stopclick"></div>
+	</div>
+	
+	<audio id="tryagain" src="media/audio/tryagain.mp3" type="audio/mpeg"></audio>
+	<audio id="welldone" src="media/audio/welldone.mp3" type="audio/mpeg"></audio>
+	<audio id="cards_match" src="media/audio/bgm.mp3" type="audio/mpeg"></audio>
+    <audio id="touching_card" src="media/audio/correct.mp3" type="audio/mpeg"></audio>
+	
+	<script type="text/javascript" src="media/jquery/jquery.js"></script>
+	<script type="text/javascript" src="media/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="media/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="media/jquery/jquery.ui.touch-punch.js"></script>
+	 <!-- Loader Libraries Starts -->
+	 <script type="text/javascript" src="media/preloader/jquery.html5Loader.min.js"></script>
+	 <script type="text/javascript" src="media/preloader/animation/jquery.big-counter.js"></script>     
+	 <script type="text/javascript" src="media/preloader/Main.class.js"></script>
+	 <script type="text/javascript" src="media/preloader/configPreload.js"></script> 
+	 <!--Loader Libraries Ends --> 
+	 <script type="text/javascript" src="media/jquery/customlib.js"></script>
+	<script type="text/javascript" src="media/data/data.js"></script>
+	<script type="text/javascript" src="media/custom.js"></script>
+</body>
+
+</html>

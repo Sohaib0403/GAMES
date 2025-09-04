@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Text Chess - Human vs Robot</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="wrapper">
+    <div class="maincontainer" id="maincontainer">
+
+      <!-- Start Screen -->
+      <div id="startScreen" class="overlayScreen">
+        <div class="logo"></div>
+        <div class="logo2"></div>
+        <div class="colorOptions">
+          <button id="whiteBtn" class="colorBtn">White</button>
+          <button id="blackBtn" class="colorBtn">Black</button>
+        </div>
+        <button id="startButton" disabled>Play</button>
+      </div>
+
+      <!-- Game UI -->
+      <div id="gameUI" style="display:none;">
+        <div id="topBar">
+          <div id="timer">Time: 00:00</div>
+          <div id="score">Score: 0</div>
+        </div>
+    
+        <div id="chessboard"></div>
+      </div>
+
+      <!-- End Screen -->
+      <div id="endScreen" class="overlayScreen" style="display:none;">
+        <h1 id="endMessage"></h1>
+        <p id="finalScore"></p>
+        <p id="timeTaken"></p>
+
+        <div class=" buttonbox">
+        <button id="replayButton">Replay</button>
+        <button id="homeButton">Home</button>
+      </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.12.0/chess.min.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    // Scaling logic
+    function scaleGame() {
+      const game = document.getElementById('maincontainer');
+      const wrapper = document.getElementById('wrapper');
+
+      const scaleX = wrapper.clientWidth / 780;
+      const scaleY = wrapper.clientHeight / 750;
+      const scale = Math.min(scaleX, scaleY);
+
+      game.style.transform = `scale(${scale})`;
+      game.style.transformOrigin = 'top left';
+
+      const scaledWidth = 780 * scale;
+      const scaledHeight = 750 * scale;
+      const left = (wrapper.clientWidth - scaledWidth) / 2;
+      const top = (wrapper.clientHeight - scaledHeight) / 2;
+
+      game.style.position = 'absolute';
+      game.style.left = `${left}px`;
+      game.style.top = `${top}px`;
+    }
+
+    window.addEventListener('resize', scaleGame);
+    window.addEventListener('load', scaleGame);
+  </script>
+</body>
+</html>

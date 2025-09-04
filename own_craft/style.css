@@ -1,0 +1,308 @@
+   * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+       font-family: 'Courier New', monospace;
+   }
+
+   body {
+       background: linear-gradient(135deg, #87CEEB, #98FB98);
+       overflow: hidden;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       height: 100vh;
+   }
+
+   #gameContainer {
+       width: 780px;
+       height: 750px;
+       transform-origin: top left;
+       /* Important for scaling */
+       position: relative;
+   }
+
+   /* Start Screen */
+   #startScreen {
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       background: linear-gradient(45deg, #4A90E2, #7ED321);
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       z-index: 1000;
+   }
+
+   #title {
+       font-size: 48px;
+       color: #FFF;
+       text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+       margin-bottom: 40px;
+       animation: bounce 2s infinite;
+   }
+
+   @keyframes bounce {
+
+       0%,
+       20%,
+       50%,
+       80%,
+       100% {
+           transform: translateY(0);
+       }
+
+       40% {
+           transform: translateY(-10px);
+       }
+
+       60% {
+           transform: translateY(-5px);
+       }
+   }
+
+   .menu-button {
+       background: #8B4513;
+       color: white;
+       border: 3px solid #654321;
+       padding: 15px 30px;
+       font-size: 18px;
+       margin: 10px;
+       cursor: pointer;
+       transition: all 0.3s;
+       font-family: 'Courier New', monospace;
+   }
+
+   .menu-button:hover {
+       background: #A0522D;
+       transform: scale(1.05);
+   }
+
+   /* Game UI */
+   #gameUI {
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       pointer-events: none;
+   }
+
+   #gameCanvas {
+       width: 100%;
+       height: 100%;
+       display: block;
+   }
+
+   /* Home Button */
+   #homeButton {
+       position: absolute;
+       top: 10px;
+       right: 10px;
+       background: #DC143C;
+       color: white;
+       border: 2px solid #B22222;
+       padding: 10px 15px;
+       cursor: pointer;
+       font-size: 14px;
+       pointer-events: all;
+       transition: all 0.3s;
+       z-index: 100;
+   }
+
+   #homeButton:hover {
+       background: #FF6347;
+       transform: scale(1.1);
+   }
+
+   /* HUD Elements */
+   #hud {
+       position: absolute;
+       bottom: 0;
+       left: 0;
+       right: 0;
+       height: 80px;
+       background: rgba(0, 0, 0, 0.7);
+       pointer-events: all;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       padding: 10px;
+   }
+
+   #inventory {
+       display: flex;
+       gap: 5px;
+   }
+
+   .inventory-slot {
+       width: 50px;
+       height: 50px;
+       background: #8B4513;
+       border: 2px solid #654321;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       color: white;
+       font-size: 12px;
+       cursor: pointer;
+       transition: all 0.3s;
+       position: relative;
+   }
+
+   .inventory-slot:hover,
+   .inventory-slot.selected {
+       border-color: #FFD700;
+       background: #A0522D;
+   }
+
+   .block-count {
+       position: absolute;
+       bottom: 2px;
+       right: 2px;
+       font-size: 10px;
+       color: #FFD700;
+   }
+
+   #controls {
+       color: white;
+       font-size: 12px;
+       text-align: right;
+   }
+
+   #crosshair {
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       width: 20px;
+       height: 20px;
+       transform: translate(-50%, -50%);
+       pointer-events: none;
+       z-index: 50;
+   }
+
+   #crosshair::before,
+   #crosshair::after {
+       content: '';
+       position: absolute;
+       background: white;
+       box-shadow: 0 0 2px black;
+   }
+
+   #crosshair::before {
+       width: 2px;
+       height: 20px;
+       left: 9px;
+       top: 0;
+   }
+
+   #crosshair::after {
+       width: 20px;
+       height: 2px;
+       left: 0;
+       top: 9px;
+   }
+
+   /* Loading Screen */
+   #loadingScreen {
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       background: #2C3E50;
+       display: none;
+       justify-content: center;
+       align-items: center;
+       z-index: 999;
+   }
+
+   .loading-text {
+       color: white;
+       font-size: 24px;
+       animation: pulse 1.5s infinite;
+   }
+
+   @keyframes pulse {
+
+       0%,
+       100% {
+           opacity: 0.5;
+       }
+
+       50% {
+           opacity: 1;
+       }
+   }
+
+   .hidden {
+       display: none !important;
+   }
+
+   /* Overlay background */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+/* Popup box */
+.popup-box {
+    background: #222;
+    color: #fff;
+    padding: 20px 30px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    font-family: Arial, sans-serif;
+    animation: fadeIn 0.3s ease;
+}
+
+.popup-box h2 {
+    margin-bottom: 15px;
+    color: #FFD700;
+}
+
+.popup-box p {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+/* Close button */
+.close-btn {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.close-btn:hover {
+    background: #cc0000;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}

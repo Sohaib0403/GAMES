@@ -1,0 +1,115 @@
+
+<html>
+	<head>
+		<meta charset="UTF-8">        
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui, width = device-width' name='viewport' />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="HandheldFriendly" content="true" />
+		
+        <title>Rearrange the Words</title>       
+		
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />                        
+        <link rel="stylesheet" type="text/css" href="css/player.css" />     
+		
+		<script type="text/javascript" src="com/libs/jquery/jquery-3.3.1.min.js"></script>        
+        <script type="text/javascript" src="com/libs/jquery/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="com/libs/device/device.min.js"></script>     
+		
+        <script type="text/javascript" src="com/libs/preloader/jquery.html5Loader.min.js"></script>
+        <script type="text/javascript" src="com/libs/preloader/animation/jquery.big-counter.js"></script>     
+        <script type="text/javascript" src="com/libs/preloader/Main.class.js"></script>
+        <script type="text/javascript" src="com/libs/preloader/configPreload.js"></script> 
+       
+       
+       <script type="text/javascript" src="version.js"></script>
+        <script type="text/javascript" src="com/lo/config.js"></script>
+        <script type="text/javascript" src="com/lo/commonFunctions.js"></script>     
+        <script type="text/javascript" src="com/lo/playerController.js"></script>  
+        <script type="text/javascript" src="com/lo/screenController.js"></script>  
+        
+        
+                       
+        <script type="text/javascript" src="com/libs/jquery/jquery.ui.touch-punch.js"></script>
+        
+        <script>    
+			document.addEventListener('touchmove', function(e) {e.preventDefault();}, { passive: false });
+			var lastTouchEnd = 0;
+			document.addEventListener('touchend', function (event) {
+				var now = (new Date()).getTime();
+				if (now - lastTouchEnd <= 50) {event.preventDefault();}
+				lastTouchEnd = now;
+            }, { passive: false });             
+
+    	</script>
+    </head>
+	<body>
+                   
+        <div id="DvMainCont">
+           
+            <div id="DvScrCont">              
+              
+                <div id="DvScr0" class="ClsScreenBg" style="display: none;">
+                    <div class="DvScrhome"></div>      
+                    <div id="DvPanel" class="ClsPanel">
+                        <div id="DvTextBg0">
+                            <div id="DvText0">Rearrange Names</div>
+                        </div> 
+                        <div class="WordsData">
+                            <div id="DvWord1" class="ClsWord"></div>
+                            <div id="DvWord2" class="ClsWord"></div>
+                            <div id="DvWord3" class="ClsWord"></div>
+                            <div id="DvWord4" class="ClsWord"></div>
+                            <div id="DvWord5" class="ClsWord"></div>
+                        </div>                       
+                        <div id="DvLogo"></div>
+                        <div id="DvStartBtn"></div>
+                    </div>
+                   
+                </div> 
+              
+                <div id="DvScr1" class="ClsScreenBg" style="display: none;"> 
+                    <div class="DvScrhome"></div>      
+                    <div id="DvPanel1" class="ClsPanel">
+                                                                
+                    </div>
+                    <div id="DvPrev"></div>
+                    <div id="DvNext"></div>
+                    <div id="DvCheck" class="ClsEnable"></div>                    
+                    
+                </div> 
+               
+                <div id="DvScr2" style="display: none;">
+                    <div id="DvPanel2" class="ClsPanel">
+                        <div id="DvTextBg2">
+                            <div id="DvText2"></div>
+                        </div>                                                
+                        <div id="DvReplay"></div>
+                    </div>   
+                    <div class="DvScrhome"></div>                                                                          
+                </div> 
+                
+
+                <div id ="DvCoverDiv" style="display: none;"></div>
+            </div>
+            
+            
+        </div>
+        
+        <div class="row">
+            <div id="html5Loader" class="col-sm-12">
+                <div id="DvLoaderCont">                
+                    <div id="DvLoaderProgress"></div>
+                    <div id="DvLoaderProgressBgText"> Loading ... </div>
+                </div>
+            </div>       
+        </div> 
+       
+        <audio id="AudInit" src="assets/audios/bgm.mp3" type="audio/mpeg" loop></audio>                      
+        <audio id="AudCorrect" src="assets/audios/correctanswer.mp3" type="audio/mpeg"></audio>        
+        <audio id="AudIncorrect" src="assets/audios/wronganswer.mp3" type="audio/mpeg"></audio>        
+        <audio id="AudScoreSound" src="assets/audios/scoresound.mp3" type="audio/mpeg"></audio>        
+        
+    </body>    
+</html>

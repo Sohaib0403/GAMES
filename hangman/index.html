@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="scale-wrapper">
+        <div class="game-container">
+            <button class="home-btn" onclick="goHome()">🏠 Home</button>
+
+            <!-- Start Screen -->
+            <div class="screen start-screen active" id="startScreen">
+                <h1>🎯 HANGMAN</h1>
+                <p>Guess the word letter by letter before the hangman is drawn! You have 6 chances to make mistakes.
+                    Good luck!</p>
+                <button class="start-btn" onclick="startGame()">Start Game</button>
+            </div>
+
+            <!-- Game Screen -->
+            <div class="screen game-screen" id="gameScreen">
+                <div class="game-header">
+
+                    <div class="word-counter">
+                        📝 Word: <span id="wordProgress">1/5</span>
+                    </div>
+                    <div class="lives-counter">
+                        ❤️ Lives: <span id="livesCount">6</span>
+                    </div>
+
+                </div>
+
+                <div class="game-content">
+                    <div class="hangman-section">
+                        <svg class="hangman-drawing" id="hangmanSvg">
+                            <!-- Gallows -->
+                            <line x1="10" y1="330" x2="150" y2="330" stroke="#8b4513" stroke-width="6" />
+                            <line x1="30" y1="330" x2="30" y2="20" stroke="#8b4513" stroke-width="6" />
+                            <line x1="27" y1="20" x2="122" y2="20" stroke="#8b4513" stroke-width="6" />
+                            <line x1="120" y1="20" x2="120" y2="50" stroke="#8b4513" stroke-width="4" />
+
+                            <!-- Hangman parts (initially hidden) -->
+                            <circle id="head" cx="120" cy="70" r="20" stroke="#2c3e50" stroke-width="4" fill="none"
+                                style="display: none" />
+                            <line id="body" x1="120" y1="90" x2="120" y2="200" stroke="#2c3e50" stroke-width="4"
+                                style="display: none" />
+                            <line id="leftArm" x1="120" y1="130" x2="80" y2="160" stroke="#2c3e50" stroke-width="4"
+                                style="display: none" />
+                            <line id="rightArm" x1="120" y1="130" x2="160" y2="160" stroke="#2c3e50" stroke-width="4"
+                                style="display: none" />
+                            <line id="leftLeg" x1="120" y1="200" x2="80" y2="250" stroke="#2c3e50" stroke-width="4"
+                                style="display: none" />
+                            <line id="rightLeg" x1="120" y1="200" x2="160" y2="250" stroke="#2c3e50" stroke-width="4"
+                                style="display: none" />
+                        </svg>
+
+                        <div class="hint-box">
+                            💡 <span id="hintText"></span>
+                        </div>
+                        <div class="score-display">
+                            🏆 Score: <span id="scoreCount">0</span>
+                        </div>
+                    </div>
+
+                    <div class="controls-section">
+                        <div class="keyboard" id="keyboard"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="word-display" id="wordDisplay"></div>
+
+            <!-- End Screen -->
+            <!-- <div class="screen end-screen" id="endScreen">
+                <h2 id="endTitle"></h2>
+                <p id="endMessage"></p>
+                <div class="word-reveal" id="wordReveal"></div>
+                <button class="replay-btn" onclick="startGame()">Play Again</button>
+            </div> -->
+
+            <div id="endScreen" class="screen end-screen">
+                <h2 id="endTitle"></h2>
+                <p id="endMessage"></p>
+                <p id="wordReveal"></p>
+                <button class="replay-btn" onclick="startGame()">Play Again</button>
+            </div>
+
+
+            <!-- Win Popup -->
+            <div class="win-popup" id="winPopup">
+                <h3>🎉 Correct!</h3>
+                <p>Great job! You guessed the word correctly!</p>
+                <button class="next-btn" onclick="nextWord()">Next Word →</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function resizeGameContainer() {
+            const gameContainer = document.querySelector('.game-container');
+            if (!gameContainer) return;
+
+            // Fixed base dimensions
+            const baseWidth = 780;
+            const baseHeight = 750;
+
+            // Screen size
+            const availableWidth = window.innerWidth;
+            const availableHeight = window.innerHeight;
+
+            // Keep aspect ratio
+            const scale = Math.min(
+                availableWidth / baseWidth,
+                availableHeight / baseHeight
+            );
+
+            // Apply scaling
+            gameContainer.style.transform = `scale(${scale})`;
+            gameContainer.style.transformOrigin = "top left";
+
+            // Center it
+            const scaledWidth = baseWidth * scale;
+            const scaledHeight = baseHeight * scale;
+
+            gameContainer.style.position = "absolute";
+            gameContainer.style.left = `${(availableWidth - scaledWidth) / 2}px`;
+            gameContainer.style.top = `${(availableHeight - scaledHeight) / 2}px`;
+        }
+
+        // Run on load + resize
+        window.addEventListener("load", resizeGameContainer);
+        window.addEventListener("resize", resizeGameContainer);
+
+
+    </script>
+
+</body>
+
+</html>

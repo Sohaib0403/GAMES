@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Golf - 1 Hole</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+</head>
+
+<body>
+  <div id="gameWrapper">
+    <div id="ground">
+      <div id="startScreen">
+        <img src="images/logo.png" alt="" id="logo">
+        <button id="playBtn">Play</button>
+      </div>
+
+      <div id="game">
+
+        <div id="ball"></div>
+        <div id="hole"></div>
+        <div id="message"></div>
+
+      </div>
+
+      <div id="score">Score: 0</div>
+      <div id="timer">Time: 120s</div>
+
+      <div id="endScreen" class="hidden">
+        <h2>Time's Up!</h2>
+        <p>Your Score: <span id="finalScore"></span></p>
+        <button id="replay">Replay</button>
+      </div>
+
+    </div>
+  </div>
+</body>
+
+</html>

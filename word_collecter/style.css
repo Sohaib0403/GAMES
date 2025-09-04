@@ -1,0 +1,230 @@
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ body {
+     font-family: 'Arial', sans-serif;
+     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 100vh;
+     overflow: hidden;
+ }
+
+ #outerWrapper {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 100vw;
+     height: 100vh;
+     overflow: hidden;
+     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+ }
+
+ #gameContainer {
+     width: 780px;
+     height: 750px;
+     transform-origin: top left;
+     /* important for scaling */
+ }
+
+ /* style.css */
+#gameContainer {
+  width: 780px;
+  height: 750px;
+  position: relative;
+  overflow: hidden;
+}
+
+
+ #startScreen,
+ #endScreen {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+     background-size: 400% 400%;
+     animation: gradientShift 4s ease infinite;
+     z-index: 100;
+ }
+
+ @keyframes gradientShift {
+     0% {
+         background-position: 0% 50%;
+     }
+
+     50% {
+         background-position: 100% 50%;
+     }
+
+     100% {
+         background-position: 0% 50%;
+     }
+ }
+
+ .hidden {
+     display: none !important;
+ }
+
+ h1 {
+     color: white;
+     font-size: 3em;
+     margin-bottom: 30px;
+     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+     text-align: center;
+ }
+
+ .button {
+     background: linear-gradient(45deg, #ff6b6b, #f093fb);
+     color: white;
+     border: none;
+     padding: 15px 30px;
+     font-size: 1.2em;
+     border-radius: 25px;
+     cursor: pointer;
+     margin: 10px;
+     transition: all 0.3s ease;
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+     font-weight: bold;
+ }
+
+ .button:hover {
+     background: linear-gradient(45deg, #ff5252, #e91e63);
+     transform: translateY(-3px);
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+ }
+
+ .age-button {
+     background: linear-gradient(45deg, #4ecdc4, #44a08d);
+     width: 200px;
+ }
+
+ .age-button:hover {
+     background: linear-gradient(45deg, #26d0ce, #2ecc71);
+ }
+
+ #gameCanvas {
+     width: 100%;
+     height: 100%;
+     display: block;
+ }
+
+ #UI {
+     position: absolute;
+     top: 10px;
+     left: 10px;
+     color: white;
+     font-size: 18px;
+     z-index: 50;
+     background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+     padding: 15px;
+     border-radius: 15px;
+     backdrop-filter: blur(10px);
+     border: 2px solid rgba(255, 255, 255, 0.2);
+ }
+
+ #currentWord {
+     position: absolute;
+     top: 10px;
+     left: 50%;
+     transform: translateX(-50%);
+     font-size: 28px;
+     font-weight: bold;
+     color: #FFD700;
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+     background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+     padding: 15px 25px;
+     border-radius: 20px;
+     z-index: 50;
+     backdrop-filter: blur(10px);
+     border: 2px solid rgba(255, 215, 0, 0.3);
+ }
+
+ #homeButton {
+     position: absolute;
+     top: 10px;
+     right: 10px;
+     background: linear-gradient(45deg, #ff6b6b, #f093fb);
+     color: white;
+     border: none;
+     padding: 10px 15px;
+     border-radius: 50%;
+     cursor: pointer;
+     font-size: 16px;
+     z-index: 50;
+     width: 50px;
+     height: 50px;
+ }
+
+ #controls {
+     position: absolute;
+     bottom: 10px;
+     left: 50%;
+     transform: translateX(-50%);
+     z-index: 50;
+ }
+
+ #pauseBtn {
+     background: linear-gradient(45deg, #4ecdc4, #44a08d);
+     margin-right: 10px;
+ }
+
+ .collected-letters {
+     position: absolute;
+     top: 70px;
+     left: 50%;
+     transform: translateX(-50%);
+     display: flex;
+     gap: 10px;
+     z-index: 50;
+ }
+
+ .collected-letter {
+     width: 35px;
+     height: 35px;
+     background: linear-gradient(45deg, #90EE90, #32CD32);
+     border: 2px solid #228B22;
+     border-radius: 8px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     font-weight: bold;
+     color: #000;
+     font-size: 16px;
+     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+ }
+
+ .instructions {
+     color: white;
+     text-align: center;
+     margin: 20px;
+     font-size: 16px;
+     max-width: 600px;
+     line-height: 1.5;
+ }
+
+ .loading {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     color: white;
+     font-size: 18px;
+     z-index: 60;
+ }
+
+ /* @media (max-width: 800px) {
+            #gameContainer {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+                border: none;
+            }
+        } */

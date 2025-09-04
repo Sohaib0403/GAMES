@@ -1,0 +1,948 @@
+@font-face {
+  font-family: "Boogaloo-Regular";
+  src: url("fonts/Boogaloo-Regular.eot");
+  src: url("fonts/Boogaloo-Regular.eot") format("embedded-opentype"),
+    url("fonts/Boogaloo-Regular.woff2") format("woff2"),
+    url("fonts/Boogaloo-Regular.woff") format("woff"),
+    url("fonts/Boogaloo-Regular.ttf") format("truetype"),
+    url("fonts/Boogaloo-Regular.svg#Boogaloo-Regular") format("svg");
+}
+
+body {
+  font-family: 'Boogaloo-Regular';
+  width: 100%;
+  height: 100%;
+}
+
+#wrapper {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.math-quiz-content {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  user-select: none;
+  width: 780px;
+  height: 750px;
+  margin: 0px;
+  padding: 0px;
+  /* display: none; */
+}
+
+.game_map {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  user-select: none;
+  width: 561px;
+  height: 686px;
+  top: 29px;
+  left: 9px;
+}
+
+.home_bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  user-select: none;
+  width: 780px;
+  height: 750px;
+  z-index: 3;
+  /* background-image: url(../assets/gameplay/hoomebg.png); */
+  /* background-color: rgb(0, 133, 120, .8); */
+  background: linear-gradient(hsl(174, 100%, 80%), rgb(0, 133, 120));
+}
+
+.title {
+  position: absolute;
+  user-select: none;
+  width: 250px;
+  height: 215px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 35px;
+  background-size: cover;
+  background-image: url('../assets/theme/Quiz-Logo.png');
+}
+
+.disable {
+  pointer-events: none;
+  opacity: .8;
+}
+
+.btn {
+  position: absolute;
+  width: 200px;
+  padding: 15px;
+  border-radius: 20px;
+  font-size: 45px;
+  background-color: #00a799;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .2s ease-in-out;
+
+}
+
+.btnactive {
+  background: url("../assets/theme/gamebg.avif");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+#history {
+  width: 40px;
+  height: 40px;
+  background-image: url("../assets/gameplay/history.png");
+  background-size: cover;
+  position: absolute;
+  top: 295px;
+  left: 110px;
+
+}
+
+#cricket {
+  width: 40px;
+  height: 40px;
+  background-image: url("../assets/gameplay/cricket.png");
+  background-size: cover;
+  position: absolute;
+  top: 298px;
+  left: 480px;
+  z-index: 1;
+}
+
+#science {
+  width: 40px;
+  height: 40px;
+  background-image: url("../assets/gameplay/science.png");
+  background-size: cover;
+  position: absolute;
+  top: 417px;
+  right: 400px;
+  z-index: 1;
+}
+
+#geography {
+  width: 40px;
+  height: 40px;
+  background-image: url("../assets/gameplay/geography.png");
+  background-size: cover;
+  position: absolute;
+  top: 417px;
+  left: 110px;
+  z-index: 1;
+
+}
+
+#btn1 {
+  top: 275px;
+  left: 100px;
+}
+
+#btn2 {
+  top: 400px;
+  left: 100px;
+}
+
+#btn3 {
+  top: 275px;
+  left: 465px;
+
+}
+
+#btn4 {
+  top: 400px;
+  left: 465px;
+
+}
+
+.btn_play {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  user-select: none;
+  top: 550px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: 130px;
+  z-index: 3;
+  cursor: pointer;
+  background-image: url(../assets/gameplay/playbtn.png);
+
+}
+
+.btn_play:hover {
+  transform: translateX(-50%) scale(0.9);
+}
+
+.btn_help {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  user-select: none;
+  width: 285px;
+  height: 153px;
+  bottom: 28px;
+  right: 232px;
+  z-index: 3;
+  cursor: pointer;
+  display: none;
+}
+
+.box_main {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  user-select: none;
+  width: 780px;
+  height: 750px;
+  top: 0px;
+  background: linear-gradient(hsl(174, 100%, 80%), rgb(0, 133, 120, .8));
+}
+
+.math-quiz-answer-correct-scorebox {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  user-select: none;
+  width: 103px;
+  height: 69px;
+  right: 36px;
+  border-radius: 10px;
+  top: 84px;
+  background-color: black;
+  font-weight: 500;
+  text-align: center;
+  display: flex;
+  vertical-align: middle;
+  color: white;
+  padding-bottom: 5px;
+  font-size: 70px;
+  border: 10px solid #ffff0000;
+  display: none;
+}
+
+.math-quiz-correct-score-text {
+  word-break: break-word;
+  margin: auto;
+  user-select: none;
+}
+
+.math-quiz-answer-correct-smiley {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  user-select: none;
+  width: 130px;
+  height: 130px;
+  right: 33px;
+  top: 193px;
+}
+
+.math-quiz-answer-wrong-scorebox {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  user-select: none;
+  width: 123px;
+  height: 89px;
+  right: 36px;
+  border-radius: 10px;
+  top: 385px;
+  background-color: black;
+  font-weight: 500;
+  text-align: center;
+  display: flex;
+  vertical-align: middle;
+  color: white;
+  font-size: 70px;
+  display: none;
+}
+
+.math-quiz-wrong-score-text {
+  word-break: break-word;
+  margin: auto;
+  user-select: none;
+}
+
+.math-quiz-answer-wrong-smiley {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  user-select: none;
+  width: 130px;
+  height: 130px;
+  right: 33px;
+  top: 497px;
+}
+
+.math-quiz-question-container {
+  position: absolute;
+  user-select: none;
+  width: 80%;
+  height: 133px;
+  left: 134px;
+  top: 65px;
+  display: flex;
+  font-size: 35px;
+  color: white;
+  font-weight: bold;
+  padding-left: 20px;
+  align-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#timeupbg {
+  position: absolute;
+  width: 780px;
+  height: 750px;
+  background-color: #000000e7;
+  z-index: 11;
+  display: none;
+}
+
+#timeup {
+  position: absolute;
+  width: 660px;
+  height: 397px;
+  left: 60px;
+  top: 60px;
+  z-index: 14;
+  background-size: cover;
+}
+
+.timeruptxt {
+  position: absolute;
+  width: 188px;
+  height: 172px;
+  top: 98px;
+  left: 504px;
+  font-size: 62px;
+  font-weight: bold;
+  color: #f9660c;
+}
+
+#reset {
+  position: absolute;
+  width: 231px;
+  height: 108px;
+  background-size: cover;
+  left: 292px;
+  top: 559px;
+  z-index: 10;
+  cursor: pointer;
+  background-image: url(../assets/gameplay/tryagain_btn.png);
+  transition: transform .3s ease-in-out;
+}
+
+#reset:hover {
+  transform: scale(.9);
+}
+
+#replay {
+  position: absolute;
+  width: 231px;
+  height: 108px;
+  background-size: cover;
+  left: 275px;
+  top: 550px;
+  z-index: 10;
+  cursor: pointer;
+  background-image: url(../assets/gameplay/replay.png);
+  transition: transform .3s ease-in-out;
+}
+
+#replay:hover {
+  transform: scale(.9);
+}
+
+.nextpop {
+  position: absolute;
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+#questionbar {
+  position: absolute;
+  width: 700px;
+  height: 120px;
+  left: 31px;
+  top: 70px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.math-quiz-question-image {
+  position: absolute;
+  user-select: none;
+  left: 576px;
+  top: 4px;
+  width: 575px;
+  height: 200px;
+  color: white;
+  font-size: 50px;
+  text-align: left;
+}
+
+#optionbox {
+  position: absolute;
+  top: 51px;
+  left: 20px;
+  color: black;
+}
+
+#question_1 {
+  display: none;
+}
+
+#question_2 {
+  display: none;
+}
+
+#question_3 {
+  display: none;
+}
+
+#question_4 {
+  display: none;
+}
+
+.math-quiz-option-text-box {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  user-select: none;
+  width: 430px;
+  height: 90px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+  font-size: 35px;
+  text-align: center;
+  display: flex;
+  vertical-align: middle;
+  border: 10px solid #ffffff00;
+}
+
+.math-quiz-option-text {
+  word-break: break-word;
+  margin: auto;
+  user-select: none;
+  cursor: pointer;
+}
+
+.math-quiz-complete {
+  position: absolute;
+  width: 1280px;
+  height: 720px;
+  background-color: #000000b5;
+  pointer-events: revert;
+  color: white;
+  font-size: 70px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  display: none;
+}
+
+#option_0 {
+  position: absolute;
+  top: 210px;
+  width: 100%;
+}
+
+#option_1 {
+  position: absolute;
+  top: 297px;
+  width: 100%;
+}
+
+#option_2 {
+  position: absolute;
+  top: 384px;
+  width: 100%;
+}
+
+#option_3 {
+  position: absolute;
+  top: 470px;
+  width: 100%;
+}
+
+.optiontext {
+  position: absolute;
+  width: 470px;
+  height: 75px;
+  left: 19px;
+  font-size: 30px;
+  background-size: cover;
+  text-indent: 34px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #FFB412;
+  width: max-content;
+  padding-right: 21px;
+  max-width: 1210px;
+  min-width: 398px;
+ 
+  display: flex;
+  align-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.selectedopt {
+  /* opacity: 0.4; */
+  background-color: #00a799 !important;
+}
+
+.btn_submit {
+  position: absolute;
+  bottom: 30px;
+  right: 260px;
+  width: 291px;
+  height: 89px;
+  background-image: url("../assets/gameplay/submit.png");
+  background-size: cover;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: transform .2s ease-in-out;
+}
+
+.btn_submit:hover {
+  transform: translateY(-10px);
+}
+
+.game_car {
+  position: absolute;
+  bottom: 68px;
+  left: 87px;
+  width: 62px;
+  height: 35px;
+  background-image: url("../assets/gameplay/game_car.png");
+  background-size: cover;
+}
+
+.labe_office {
+  position: absolute;
+  bottom: 199px;
+  left: 453px;
+  width: 75px;
+  height: 25px;
+  background-image: url("../assets/gameplay/label_office.png");
+  background-size: cover;
+}
+
+.labe_home {
+  position: absolute;
+  bottom: 135px;
+  left: 87px;
+  width: 75px;
+  height: 25px;
+  background-size: cover;
+}
+
+.number_base {
+  position: absolute;
+  bottom: 30px;
+  left: 50px;
+  width: 43px;
+  height: 47px;
+  background-image: url("../assets/gameplay/number_base.png");
+  background-size: cover;
+}
+
+/*-- Loader CSS Starts --*/
+#html5Loader {
+  top: 0;
+  left: 0;
+  margin: 0;
+  position: fixed;
+  z-index: 3;
+  background: #ffffff;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDA3NSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ5JSIgc3RvcC1jb2xvcj0iIzAwMDAzMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+  background: -moz-linear-gradient(left, #ffffff 0%, #ffffff 49%);
+  background: -webkit-gradient(linear,
+      left top,
+      right top,
+      color-stop(0%, #ffffff),
+      color-stop(49%, #ffffff));
+  background: -webkit-linear-gradient(left, #ffffff 0%, #ffffff 49%);
+  background: -o-linear-gradient(left, #ffffff 0%, #ffffff 49%);
+  background: -ms-linear-gradient(left, #ffffff 0%, #ffffff 49%);
+  background: linear-gradient(to right, #ffffff 0%, #ffffff 49%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1);
+}
+
+#html5Loader .fallback {
+  top: 50%;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  color: white;
+  /*vertical-align: middle;*/
+  /*display: block;font-style: normal;font-size:100px;*/
+}
+
+div#DvLoaderCont {
+  width: 300px;
+  height: 15px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  margin: auto;
+  z-index: 100;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+div#DvLoaderProgress {
+  width: 300px;
+  height: 15px;
+  position: absolute;
+  top: 0px;
+  left: -300px;
+  background: #0079c0;
+}
+
+/*-- Loader CSS Ends --*/
+
+#game_container {
+  position: absolute;
+  width: 780px;
+  height: 750px;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+  display: none;
+}
+
+#point {
+  position: absolute;
+  width: 43px;
+  height: 47px;
+  background-image: url("../assets/gameplay/number_base.png");
+  background-size: cover;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 42px;
+}
+
+.locationNum_11 {
+  position: absolute;
+  left: 417px;
+  top: 500px;
+}
+
+.locationNum_1 {
+  position: absolute;
+  left: 152px;
+  bottom: 84px;
+}
+
+.locationNum_2 {
+  position: absolute;
+  left: 89px;
+  bottom: 219px;
+}
+
+.locationNum_3 {
+  position: absolute;
+  left: 122px;
+  top: 320px;
+}
+
+.locationNum_4 {
+  position: absolute;
+  left: 119px;
+  top: 126px;
+}
+
+.locationNum_5 {
+  position: absolute;
+  left: 278px;
+  top: 103px;
+}
+
+.locationNum_6 {
+  position: absolute;
+  left: 484px;
+  top: 77px;
+}
+
+.locationNum_7 {
+  position: absolute;
+  left: 338px;
+  top: 231px;
+}
+
+.locationNum_8 {
+  position: absolute;
+  left: 401px;
+  top: 299px;
+}
+
+.locationNum_9 {
+  position: absolute;
+  left: 272px;
+  bottom: 273px;
+}
+
+.locationNum_10 {
+  position: absolute;
+  left: 283px;
+  bottom: 159px;
+}
+
+#welldonebg {
+  position: absolute;
+  width: 780px;
+  height: 750px;
+  background-color: #000000a6;
+  z-index: 9;
+  display: none;
+}
+
+.smiley_complete {
+  position: absolute;
+  width: 417px;
+  height: 340px;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  background-image: url("../assets/gameplay/smiley.png");
+  background-size: cover;
+}
+
+.welldone {
+  position: absolute;
+  width: 343px;
+  height: 307px;
+  z-index: 10;
+  top: 50%;
+  left: 40%;
+  translate: -50% -50%;
+  background-image: url("https://cdn.pixabay.com/photo/2022/12/11/04/11/thumbs-up-7648171_1280.png");
+  background-size: cover;
+  display: none;
+}
+
+#tryagainbg {
+  position: absolute;
+  width: 780px;
+  height: 750px;
+  background-color: #000000a6;
+  z-index: 9;
+  display: none;
+}
+
+.tryfeedback {
+  position: absolute;
+  width: 346px;
+  height: 400px;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  background-image: url("https://media.licdn.com/dms/image/v2/C4D12AQHgE69OpWzKwA/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1574694365769?e=2147483647&v=beta&t=RaC2Jqm55rbGLMYqZ_IKTpy8UAuk1Gjeau4zqpIPpvI");
+  background-size: cover;
+  display: none;
+}
+
+#gameover {
+  position: absolute;
+  width: 1280px;
+  height: 720px;
+  background-color: rgb(0 0 0 / 66%);
+  color: #ffffff;
+  display: none;
+}
+
+.smiley_gameover {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  z-index: 10;
+  top: 8%;
+  left: 54%;
+  background-image: url("../assets/gameplay/tryagain.png");
+  background-size: cover;
+}
+
+#gameoverText {
+  position: absolute;
+  width: 1042px;
+  height: 200px;
+  font-size: 69px;
+  font-weight: bold;
+  color: white;
+  top: 82%;
+  left: 72%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  text-align: center;
+  display: none;
+}
+
+#gameComplete {
+  position: absolute;
+  width: 780px;
+  height: 750px;
+  background: linear-gradient(hsl(174, 100%, 80%), rgb(0, 133, 120, .8));
+  color: #ffffff;
+  display: none;
+  z-index: 3;
+}
+
+
+#timerbox {
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url(../assets/gameplay/timer.png);
+  width: 189px;
+  height: 63px;
+  right: 57px;
+  top: 10px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  z-index: 1;
+}
+
+#timer {
+  position: absolute;
+  left: 75px;
+  top: 12px;
+  font-size: 36px;
+  color: black;
+  font-weight: bold;
+}
+
+#gameCompleteText {
+  position: absolute;
+  width: 312px;
+  height: 70px;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  top: 63%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  text-align: center;
+}
+
+#helpdiv {
+  position: absolute;
+  width: 1280px;
+  height: 720px;
+  background-color: #000000a6;
+  z-index: 9;
+  display: none;
+}
+
+#helpbox {
+  position: absolute;
+  width: 50%;
+  height: 40%;
+  background-color: #131d64;
+  left: 302px;
+  top: 180px;
+  border: 4px solid white;
+}
+
+#helptext {
+  position: absolute;
+  font-size: 38px;
+  color: white;
+  font-weight: bold;
+  width: 90%;
+  text-align: center;
+  left: 5%;
+  top: 22%;
+}
+
+#progress {
+  position: absolute;
+  /* border-style: solid;
+  border-color: black; */
+  z-index: 2;
+  width: 42.5%;
+  left: 50px;
+  top: 25px;
+  height: 27px;
+  border-radius: 10px;
+  background: #f3ebdbc7;
+}
+
+.progress-el {
+  display: inline-block;
+  height: 26px;
+  width: 1px;
+  border-radius: 10px;
+}
+
+#ques_num {
+  position: absolute;
+  top: 0px;
+  left: 240px;
+  font-size: 40px;
+  font-weight: bold;
+  color: black;
+}
+
+.progress-text {
+  position: fixed;
+  color: black;
+  font-weight: bold;
+  width: 40%;
+  height: 26px;
+  line-height: 24px;
+  text-align: center;
+  font-size: 24pt;
+  z-index: 2;
+}

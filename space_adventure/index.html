@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui, width = device-width"
+      name="viewport"
+    />
+    <title>explore planets</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="Assets/Template/jquery/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+     
+    />
+    <link
+      rel="stylesheet"
+     
+    />
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+   
+    <script>
+      document.addEventListener(
+        "touchmove",
+        function (e) {
+          e.preventDefault();
+        },
+        { passive: false }
+      );
+
+      var lastTouchEnd = 0;
+
+      document.addEventListener(
+        "touchend",
+        function (event) {
+          var now = new Date().getTime();
+          if (now - lastTouchEnd <= 50) {
+            event.preventDefault();
+          }
+          lastTouchEnd = now;
+        },
+        { passive: false }
+      );
+    </script>
+  </head>
+
+  <body>
+    <!--Preloader-->
+    <div class="row">
+      <div id="html5Loader" class="col-sm-12">
+        <div id="DvLoaderCont">
+          <div id="DvLoaderProgress"></div>
+        </div>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="game_container">
+        <div class="namePlanet" id="name1"></div>
+        <div class="namePlanet" id="name2"></div>
+        <div id="startgame"></div>
+        <div class="earth" id="earth"></div>
+        <div class="moon" id="moon"></div>
+        <div class="saturn" id="saturn"></div>
+        <div class="moke" id="smoke"></div>
+        <div class="map" id="map"></div>
+        <div class="rocket" id="rocket"></div>
+
+        <div class="planet" id="planet"></div>
+        <div id="setting_button2"></div>
+        <div id="livesbox" class="livesbox"></div>
+        <div id="tiggie" class="tiggie">
+          <div id="handcursoranim" class="handcursoranim"></div>
+        </div>
+        <div id="caption_text"></div>
+        <div id="settingpage">
+          <div id="instruction_title"></div>
+          <div id="tap_mouse_1" num="1" class="settingbtns activebtn">
+            <div id="tap_mouse_1_img"></div>
+            <span class="tap_mouse_1_text">Tap/ Mouse</span>
+          </div>
+
+          <div id="close_setting"></div>
+          <div id="start_activity">START ACTIVITY</div>
+        </div>
+        <div id="settingpage2">
+          <div id="bgm_music" class="bgm_music">OFF</div>
+          <div id="sound_effect" class="sound_effect">OFF</div>
+          <div id="game_voiceover" class="game_voiceover">OFF</div>
+          <div id="game_caption" class="game_caption">OFF</div>
+          <div id="setting_text"></div>
+          <div id="audiosetting_text">Audio Settings</div>
+          <div id="deviceselect_text">Device Selection</div>
+          <div id="bgm_music_text">Background Music</div>
+          <div id="sound_effect_text">Sound Effects</div>
+          <div id="game_voiceover_text">Game Voiceover</div>
+          <div id="game_caption_text">Game Caption</div>
+          <div id="player1">
+            <div id="volume1" class="volume"></div>
+          </div>
+          <div id="player2">
+            <div id="volume2" class="volume"></div>
+          </div>
+          <div id="player3">
+            <div id="volume3" class="volume"></div>
+          </div>
+
+          <div id="tap_mouse_2" num="1" class="settingbtns activebtn">
+            <div id="tap_mouse_2_img2"></div>
+            <span class="tap_mouse_1_text2">Tap/ Mouse</span>
+          </div>
+
+          <div id="eye_tracker_2" num="4" class="settingbtns">
+            <div id="eye_tracker_2_img2"></div>
+            <span class="tap_mouse_4_text2">Eye-gaze/ Tracker</span>
+          </div>
+
+          <div id="save_changes_btn">SAVE CHANGES</div>
+          <div id="exit_game_btn">EXIT GAME</div>
+          <div id="close_setting_btn"></div>
+        </div>
+
+        <div class="chicken" id="chicken">
+          <div class="img" id="img1"></div>
+          <div class="img" id="img2"></div>
+          <div class="img" id="img3"></div>
+          <div class="img" id="img4"></div>
+        </div>
+
+        <div class="cow" id="cow">
+          <div class="img" id="img5"></div>
+          <div class="img" id="img6"></div>
+          <div class="img" id="img7"></div>
+          <div class="img" id="img8"></div>
+        </div>
+
+        <div class="rabbit" id="rabbit">
+          <div class="img" id="img9"></div>
+          <div class="img" id="img10"></div>
+        </div>
+
+        <div class="sheep" id="sheep">
+          <div class="img" id="img11"></div>
+          <div class="img" id="img12"></div>
+          <div class="img" id="img13"></div>
+          <div class="img" id="img14"></div>
+        </div>
+
+        <div class="duck" id="duck">
+          <div class="img" id="img15"></div>
+        </div>
+
+        <div id="captchaScreen" class="ClsHide">
+          <div id="captchaCont">
+            <div id="CaptchaQLabel">Adult Only</div>
+            <div id="CaptchaIcon"></div>
+            <div id="CaptchaQ"></div>
+            <div id="numpadCont">
+              <div id="num1" class="clsNumBtn" data-value="1">1</div>
+              <div id="num2" class="clsNumBtn" data-value="2">2</div>
+              <div id="num3" class="clsNumBtn" data-value="3">3</div>
+              <div id="num4" class="clsNumBtn" data-value="4">4</div>
+              <div id="num5" class="clsNumBtn" data-value="5">5</div>
+              <div id="num6" class="clsNumBtn" data-value="6">6</div>
+              <div id="num7" class="clsNumBtn" data-value="7">7</div>
+              <div id="num8" class="clsNumBtn" data-value="8">8</div>
+              <div id="num9" class="clsNumBtn" data-value="9">9</div>
+            </div>
+            <div id="closeCaptcha"></div>
+          </div>
+        </div>
+      </div>
+      <div id="stopclick"></div>
+      <div id="stopscreen"></div>
+      <div id="skip_button"></div>
+      <div id="levelupouter">
+        <div id="levelupstar"></div>
+      </div>
+      <div id="outero">
+        <div id="endbox">
+          <div id="welcometxt"></div>
+          <div id="star1"></div>
+          <div id="star2"></div>
+          <div id="star3"></div>
+          <div id="winanim"></div>
+        </div>
+        <div class="balloon" id="b1"></div>
+        <div class="balloon" id="b2"></div>
+        <div class="balloon" id="b3"></div>
+        <div class="balloon" id="b4"></div>
+        <div class="balloon" id="b5"></div>
+        <div class="balloon" id="b6"></div>
+        <div class="balloon" id="b7"></div>
+        <div class="balloon" id="b8"></div>
+        <div class="balloon" id="b9"></div>
+        <div class="balloon" id="b10"></div>
+      </div>
+      <div id="replay_screen">
+        <div id="replayBtn"></div>
+        <div id="exitBtn"></div>
+      </div>
+    </div>
+    <audio id="bgm" src="Assets/Data/audio/bgm.mp3" type="audio/mpeg"></audio>
+    <audio
+      id="welldone"
+      src="Assets/Data/audio/well_done_all_match_vo.mp3"
+      type="audio/mpeg"
+    ></audio>
+    <audio
+      id="wrong"
+      src="Assets/Data/audio/instruction_vo.mp3"
+      type="audio/mpeg"
+    ></audio>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script
+      type="text/javascript"
+      src="Assets/Template/jquery/jquery-ui.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="Assets/Template/device/device.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="Assets/Template/jquery/config.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="Assets/Template/jquery/jquery.ui.touch-punch.js"
+    ></script>
+    <!-- Loader Libraries Starts -->
+    <script
+      type="text/javascript"
+      src="Assets/Template/preloader/jquery.html5Loader.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="Assets/Template/preloader/animation/jquery.big-counter.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="Assets/Template/preloader/Main.class.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="Assets/Template/preloader/configPreload.js"
+    ></script>
+    <!--Loader Libraries Ends -->
+
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="settings.js"></script>
+    <script type="text/javascript" src="game.js"></script>
+  </body>
+</html>

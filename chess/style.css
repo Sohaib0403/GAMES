@@ -1,0 +1,223 @@
+/* Basic reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+html,
+body,
+#wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #f0f0f0;
+  position: relative;
+}
+
+.maincontainer {
+  width: 780px;
+  height: 750px;
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(images/bg.jpg);
+  background-size: cover;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#chessboard {
+  display: grid;
+  grid-template-columns: repeat(8, 62.5px);
+  grid-template-rows: repeat(8, 62.5px);
+  width: 540px;
+  height: 540px;
+  margin: 0 auto 20px;
+  border: 20px solid #7B3F00;
+  user-select: none;
+  background-color: #ddd;
+  border-radius: 15px;
+  box-shadow: inset 0 0 10px #999;
+}
+
+.square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 30px;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid black;
+
+}
+
+.square.white {
+  background-color: #eee;
+}
+
+.square.black {
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  background-size: cover;
+  background-color: #b87f4c;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+
+
+.square.selected {
+  outline: 4px solid #ffa500;
+  z-index: 1;
+}
+
+.square img.piece {
+  max-width: 70%;
+  max-height: 70%;
+  pointer-events: none;
+  user-select: none;
+}
+
+#topBar {
+  width: 700px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  font-size: 24px;
+  padding: 0 10px 10px;
+  user-select: none;
+}
+
+
+#timer,
+#score {
+  background: #f0e691;
+  border-radius: 6px;
+  padding: 5px 20px;
+  width: 180px;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.overlayScreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(images/bg.jpg);
+  background-size: cover;
+  color: white;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.colorOptions {
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
+  margin: 20px 0;
+}
+
+.colorOptions label {
+  margin: 0 15px;
+  font-size: 60px;
+  gap: 20px;
+  background-color: hsl(64, 49%, 78%);
+  padding: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+button {
+  font-size: 20px;
+  padding: 10px 30px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+#endScreen {
+  display: flex;
+  gap: 60px;
+}
+
+#endScreen p {
+  margin: 10px 0;
+  font-size: 60px;
+}
+
+.logo {
+  background-image: url(images/logo.png);
+  height: 350px;
+  width: 515px;
+  background-size: contain ;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.logo2 {
+  background-image: url(images/logo2.png);
+  height: 140px;
+  width: 515px;
+  background-image: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.colorBtn {
+  height: 80px;
+  width: 200px;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ddc83b;
+  cursor: pointer;
+  font-size: 40px;
+  box-shadow: 0 0 10px black;
+  transition: background-color 0.3s;
+}
+
+.colorBtn.selected {
+  background-color: grey;
+  color: white;
+}
+
+#startButton {
+  height: 80px;
+  width: 200px;
+  font-size: 40px;
+}
+
+.buttonbox {
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}

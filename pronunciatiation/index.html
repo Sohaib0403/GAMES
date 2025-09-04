@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronunciation Learning Game</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="scale-wrapper">
+        <div class="game-container" id="gameContainer">
+            <div class="game-header">
+                <div class="score">Score: <span id="scoreValue">0</span></div>
+                <div class="lives" id="lives">
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                </div>
+                <button class="home-btn" onclick="showMenu()">🏠 Home</button>
+            </div>
+
+            <div class="menu-screen" id="menuScreen">
+                <h1>Pronunciation Learning Game</h1>
+                <div class="mode-buttons">
+                    <button class="mode-btn" onclick="startGame('fruits')">🍎 Fruits</button>
+                    <button class="mode-btn" onclick="startGame('vegetables')">🥕 Vegetables</button>
+                    <button class="mode-btn" onclick="startGame('months')">📅 Months</button>
+                    <button class="mode-btn" onclick="startGame('weekdays')">📆 Weekdays</button>
+                    <button class="mode-btn seasons" onclick="startGame('seasons')">🌸 Seasons</button>
+                </div>
+            </div>
+
+            <div class="game-screen" id="gameScreen">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="word-container">
+                    <div class="word-image" id="wordImage"></div>
+                    <div class="word-text" id="wordText"></div>
+                </div>
+                <div class="pronunciation-controls">
+                    <button class="mic-button" id="micButton" onclick="startListening()">🎤</button>
+                    <div class="attempts" id="attempts">Attempts: 3/3</div>
+                </div>
+            </div>
+
+            <div class="end-screen" id="endScreen">
+                <h2 id="endTitle">Game Over!</h2>
+                <div class="final-score" id="finalScore">Final Score: 0</div>
+                <button class="replay-btn" onclick="showMenu()">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js">
+    </script>
+    <script>
+        function resizeGame() {
+            const gameContainer = document.querySelector('.game-container');
+            const wrapper = document.querySelector('.scale-wrapper');
+
+            const scaleX = wrapper.clientWidth / 780;
+            const scaleY = wrapper.clientHeight / 750;
+            const scale = Math.min(scaleX, scaleY); // Keep aspect ratio
+
+            gameContainer.style.transform = `scale(${scale})`;
+        }
+
+        // Call on load and resize
+        window.addEventListener('load', resizeGame);
+        window.addEventListener('resize', resizeGame);
+
+    </script>
+</body>
+
+</html>

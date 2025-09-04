@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui, width = device-width"
+    name="viewport" />
+  <link href="media/css/quiz.css" rel="stylesheet" type="text/css" />
+  <title>Quiz Game</title>
+  <script>
+    document.addEventListener(
+      "touchmove",
+      function (e) {
+        e.preventDefault();
+      },
+      { passive: false }
+    );
+
+    var lastTouchEnd = 0;
+
+    document.addEventListener(
+      "touchend",
+      function (event) {
+        var now = new Date().getTime();
+        if (now - lastTouchEnd <= 50) {
+          event.preventDefault();
+        }
+        lastTouchEnd = now;
+      },
+      { passive: false }
+    );
+  </script>
+</head>
+
+<body>
+  <!--Preloader-->
+  <div class="row">
+    <div id="html5Loader" class="col-sm-12">
+      <div id="DvLoaderCont">
+        <div id="DvLoaderProgress"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="wrapper">
+    <div id="load_images" style="width: 0px; height: 0px; opacity: 0">
+      
+    </div>
+
+    <div id="game_container">
+      <div id="home" class="home_bg" style="display: block">
+        <div class="btn" id="btn1">History</div>
+        <!-- <div id="history"></div>
+        <div id="geography"></div>
+        <div id="cricket"></div>
+        <div id="science"></div> -->
+        <div class="btn" id="btn2">Geography</div>
+        <div class="btn" id="btn3">Cricket</div>
+        <div class="btn" id="btn4">Science</div>
+        <div id="hometitle" class="title">
+        </div>
+        <div id="homeplay" class="btn_play"></div>
+        <div id="lefthelp" class="btn_help"></div>
+      </div>
+      <div id="mathQuizContent" class="math-quiz-content">
+        <div id="timerbox" class="timerbox">
+          <div id="timer" class="timer">00:00</div>
+        </div>
+        <div id="progress">
+          <div class="progress-text" style="">0 %</div>
+        </div>
+        <div id="ques_num"></div>
+        <div id="boxMain" class="box_main">
+          <div id="questionbar"></div>
+          <div id="questboxdiv" class="math-quiz-question-container"></div>
+          <div id="optionbox"></div>
+          <div id="submit" class="btn_submit"></div>
+        </div>
+        <div id="gameover">
+          <div id="smiley_gameover" class="smiley_gameover"></div>
+        </div>
+        <div id="gameoverText">
+          Better Luck Next Time <br />
+          Game Over
+        </div>
+        <div id="gameComplete">
+          <div id="smiley_complete" class="smiley_complete"></div>
+          <div id="gameCompleteText"></div>
+          <div id="replay"></div>
+        </div>
+        <div id="welldonebg"></div>
+        <div class="welldone"></div>
+        <div id="tryagainbg"></div>
+        <div id="tryfeedback" class="tryfeedback"></div>
+        <div id="timeupbg">
+          <div id="timeup">
+            <div id="timeruptxt" class="timeruptxt"></div>
+          </div>
+          <div id="reset">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="helpdiv" onclick="closehelp();">
+      <div id="helpbox">
+        <div id="helptext">
+          Read the question carefully and choose the correct option after that
+          click on submit button.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <audio id="tryagain" src="media/assets/audio/tryagain.mp3" type="audio/mpeg"></audio>
+  <audio id="welldone" src="media/assets/audio/claping.mp3" type="audio/mpeg"></audio>
+  <audio id="greatwork" src="media/assets/audio/greatwork.mp3" type="audio/mpeg"></audio>
+  <audio id="select" src="media/assets/audio/select.wav" type="audio/mpeg"></audio>
+
+  <script src="media/script/jquery/jquery.js"></script>
+
+  <script type="text/javascript" src="media/script/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="media/script/jquery/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="media/script/jquery/jquery.ui.touch-punch.js"></script>
+
+  <!-- Loader Libraries Starts -->
+  <script type="text/javascript" src="media/script/preloader/jquery.html5Loader.min.js"></script>
+  <script type="text/javascript" src="media/script/preloader/animation/jquery.big-counter.js"></script>
+  <script type="text/javascript" src="media/script/preloader/Main.class.js"></script>
+  <script type="text/javascript" src="media/script/preloader/configPreload.js"></script>
+  <!--Loader Libraries Ends -->
+
+  <script src="media/data.js"></script>
+  <script src="media/script/quiz.js"></script>
+</body>
+
+</html>

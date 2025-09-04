@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui, width = device-width"
+    name="viewport" />
+<title>Bubble Shooter Game</title>
+<link href="media/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="media/jquery.mobile-1.5.0-alpha.1.min.css">
+<script type='text/javascript' src='media/main.js'></script>
+
+<!-- <script>
+    document.addEventListener(
+      "touchmove",
+      function (e) {
+        e.preventDefault();
+      },
+      { passive: false }
+    );
+
+    var lastTouchEnd = 0;
+
+    document.addEventListener(
+      "touchend",
+      function (event) {
+        var now = new Date().getTime();
+        if (now - lastTouchEnd <= 50) {
+          event.preventDefault();
+        }
+        lastTouchEnd = now;
+      },
+      { passive: false }
+    );
+  </script> -->
+  
+</head>
+
+<body>
+<div id="wrapper">
+  <div class="start">
+      <div id="logo" class="logo"></div>
+      <div class="playbtn">Start</div>
+    </div>
+    <canvas id="viewport" width="780" height="750"></canvas>
+    
+    <div id="score">
+        <div id="scorevalue">0</div>
+    </div>
+    <div id="replay"></div>
+    <div id="restart">Restart</div>
+    <div id="instructionbtn"></div>
+    <div id="play_audio" class="play_audio"></div>
+    <div id="pause_audio" class="pause_audio"></div>
+
+    <div id="instruction_1"></div>
+
+    <div id="instruction">
+      
+      <div id="text">When you start Bubble Shooter, you’ll notice many bubbles on your screen ready for you to pop them! You’ll have a bubble cannon at the bottom end of the screen with a colored bubble. 
+        The goal of Bubble Shooter is to make all of the bubbles on your screen disappear!</div>
+        <div id="playbutton">Play</div>
+    </div>
+
+
+    
+</div>
+
+<script>
+  // Wait for DOM to load
+  document.addEventListener('DOMContentLoaded', () => {
+    const startDiv = document.querySelector('.start');
+    const playBtn = document.querySelector('.playbtn');
+
+    playBtn.addEventListener('click', () => {
+      // Hide the start container when play is clicked
+      startDiv.style.display = 'none';
+    });
+  });
+</script>
+<audio id="blaster" src="media/audio/canon_woosh.mp3" type="audio/mpeg"></audio>
+<audio id="laser_zap" src="media/audio/bubble_pop.mp3" type="audio/mpeg"></audio>
+<audio id="pick" src="media/audio/bubble_hit.mp3" type="audio/mpeg"></audio>
+<audio id="clickbtn" src="media/audio/click_title.mp3" type="audio/mpeg"></audio>
+<audio id="gmoverbtn" src="media/audio/gameover.mp3" type="audio/mpeg"></audio>
+<script src="media/jquery.js"></script>
+<script src="media/jquery.mobile-1.5.0-alpha.1.min.js"></script>
+
+</body>
+
+</html> 

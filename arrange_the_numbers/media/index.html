@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta
+		content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui, width = device-width'
+		name='viewport' />
+
+	<title>Numbers</title>
+
+	<link rel="stylesheet" type="text/css" href="media/jquery/animate.min.css" />
+	<link rel="stylesheet" type="text/css" href="media/style.css" />
+
+	<script>
+	
+		
+		
+		document.addEventListener('touchmove', function (e) {
+			e.preventDefault();
+		}, { passive: false });
+
+		var lastTouchEnd = 0;
+
+		document.addEventListener('touchend', function (event) {
+			var now = (new Date()).getTime();
+			if (now - lastTouchEnd <= 50) {
+				event.preventDefault();
+			}
+			lastTouchEnd = now;
+		}, { passive: false });
+
+	</script>
+
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="row">
+		<div id="html5Loader" class="col-sm-12">
+			<div id="DvLoaderCont">
+				<div id="DvLoaderProgress"></div>
+			</div>
+		</div>       
+	</div>  
+	<div id="wrapper">
+
+		<div id="load_images" style="width:0px;height:0px;opacity: 0;">
+			<img src="media/images/bg.png">
+			<img src="media/images/1.png">
+			<img src="media/images/2.png">
+			<img src="media/images/3.png">
+			<img src="media/images/4.png">
+			<img src="media/images/5.png">
+			<img src="media/images/6.png">
+			<img src="media/images/7.png">
+			<img src="media/images/8.png">
+			<img src="media/images/9.png">
+			<img src="media/images/10.png">
+			<img src="media/images/11.png">
+			<img src="media/images/12.png">
+			<img src="media/images/13.png">
+			<img src="media/images/14.png">
+			<img src="media/images/15.png">
+			<img src="media/images/16.png">
+			<img src="media/images/17.png">
+			<img src="media/images/18.png">
+			<img src="media/images/19.png">
+			<img src="media/images/20.png">
+			<img src="media/images/homebotton.png">
+			<img src="media/images/cursor.png">
+			<img src="media/images/play.png">
+			<img src="media/images/welldone.png">
+			
+			<img src="media/images/tryagain.png">
+		</div>
+
+		<div id="game_container">
+			<div id="questiontxt" class="questiontxt"></div>
+			<div id="home_btn" class="home_btn"></div>
+			<div id="number_container"></div>
+			<div id="submit_btn" class="submit_btn">
+				<div id="submitInner" class="submitInner">
+					<div id="submitTxt" class="submitTxt">Submit</div>
+				</div>
+			</div>
+			<div id="tryagn_btn" class="tryagn_btn">
+				<div id="tryInner" class="tryInner">
+					<div id="tryTxt" class="tryTxt">Try Again</div>
+				</div>
+			</div>
+			<div id="showanswer_btn" class="showanswer_btn">
+				<div id="showanswerInner" class="showanswerInner">
+					<div id="showanswerTxt" class="showanswerTxt">Result</div>
+				</div>
+			</div>
+
+			<div id="weldone_btn" class="weldone_btn">
+				<div id="weldoneInner" class="weldoneInner">
+					<div id="weldoneTxt" class="weldoneTxt">Well Done</div>
+				</div>
+			</div>
+
+			<div id="welldonebg">
+				<div id="welldone" class="welldone"></div>
+			</div>
+
+			<div id="tryaganinbg">
+				<div id="tryaganinimg" class="tryaganinimg"></div>
+			</div>
+
+
+			<div id="ins_arrow" class="ins_arrow"></div>
+			<div id="play_btn" class="play_btn">
+				<div id="play_btnInner" class="play_btnInner">
+					<div id="play_btnTxt" class="play_btnTxt"></div>
+				</div>
+			</div>
+
+			<div id="play_audio" class="play_audio"></div>
+			<div id="pause_audio" class="pause_audio"></div>
+
+		</div>
+		<div id="stopclick"></div>
+		
+		
+	</div>
+	<audio id="bgm" src="media/audio/bgm.mp3" type="audio/mpeg"></audio>
+	<audio id="tryagain" src="media/audio/tryagain.mp3" type="audio/mpeg"></audio>
+    <audio id="welldone" src="media/audio/welldone.mp3" type="audio/mpeg"></audio>
+	
+	<script type="text/javascript" src="media/jquery/jquery.js"></script>
+
+	<script type="text/javascript" src="media/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="media/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="media/jquery/jquery.ui.touch-punch.js"></script>
+
+	 <!-- Loader Libraries Starts -->
+	 <script type="text/javascript" src="media/preloader/jquery.html5Loader.min.js"></script>
+	 <script type="text/javascript" src="media/preloader/animation/jquery.big-counter.js"></script>     
+	 <script type="text/javascript" src="media/preloader/Main.class.js"></script>
+	 <script type="text/javascript" src="media/preloader/configPreload.js"></script> 
+	 <!--Loader Libraries Ends --> 
+
+	<script type="text/javascript" src="media/data/data.js"></script>
+	<script type="text/javascript" src="media/custom.js"></script>
+</body>
+
+</html>

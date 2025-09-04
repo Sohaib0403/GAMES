@@ -1,0 +1,116 @@
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">        
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui, width = device-width' name='viewport' />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="HandheldFriendly" content="true" />
+		
+        <title>TIC TAC TOE</title>       
+		
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />                        
+        <link rel="stylesheet" type="text/css" href="css/player.css" />     
+		
+		<!-- Libs Starts -->
+		<script type="text/javascript" src="com/libs/jquery/jquery-3.3.1.min.js"></script>        
+        <script type="text/javascript" src="com/libs/jquery/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="com/libs/device/device.min.js"></script>                   
+
+        <!-- Loader Libraries Starts -->
+        <script type="text/javascript" src="com/libs/preloader/jquery.html5Loader.min.js"></script>
+        <script type="text/javascript" src="com/libs/preloader/animation/jquery.big-counter.js"></script>     
+        <script type="text/javascript" src="com/libs/preloader/Main.class.js"></script>
+        <script type="text/javascript" src="com/libs/preloader/configPreload.js"></script> 
+        <!--Loader Libraries Ends --> 
+
+        <!-- Libs Ends -->  
+
+        <script type="text/javascript" src="version.js"></script>
+        <script type="text/javascript" src="com/lo/config.js"></script>
+        <script type="text/javascript" src="com/lo/commonFunctions.js"></script>     
+        <script type="text/javascript" src="com/lo/playerController.js"></script>
+        <script type="text/javascript" src="com/lo/screenController.js"></script>
+        <script type="text/javascript" src="com/libs/jquery/jquery.ui.touch-punch.js"></script>
+        
+        <script>    
+			document.addEventListener('touchmove', function(e) {e.preventDefault();}, { passive: false });
+			var lastTouchEnd = 0;
+			document.addEventListener('touchend', function (event) {
+				var now = (new Date()).getTime();
+				if (now - lastTouchEnd <= 50) {event.preventDefault();}
+				lastTouchEnd = now;
+            }, { passive: false });             
+
+    	</script>
+    </head>
+	<body>
+        <!-- Main Container : Starts -->                
+        <div id="DvMainCont">
+            <!-- Screen Container : Starts -->
+            <div id="DvScrCont">                 
+                <!-- screen 0 : starts -->
+                <div id="DvScr0" style="display: none;">
+                    <div id="BgLHS"></div>
+                    <!-- <div id="WinAnim0" class="ClsWinAnim ClsHide"></div> -->
+                    <img id="WinAnim0" class="ClsWinAnim ClsHide" src="" alt="">
+                    <!-- <div id="WinAnim1" class="ClsWinAnim ClsHide"></div>
+                    <div id="WinAnim2" class="ClsWinAnim ClsHide"></div>
+                    <div id="WinAnim3" class="ClsWinAnim ClsHide"></div> -->
+
+                    <!-- <div id="WinAnim4" class="ClsWinAnim ClsHide"></div>
+                    <div id="WinAnim5" class="ClsWinAnim ClsHide"></div>
+                    <div id="WinAnim6" class="ClsWinAnim ClsHide"></div>
+                    <div id="WinAnim7" class="ClsWinAnim ClsHide"></div> -->
+
+                    <!-- <div id="WinAnim8" class="ClsWinAnim ClsHide"></div> -->
+                    <!-- <div id="WinAnim9" class="ClsWinAnim ClsHide"></div>
+                    <div id="WinAnim10" class="ClsWinAnim ClsHide"></div>
+                    <div id="WinAnim11" class="ClsWinAnim ClsHide"></div> -->
+                    
+                    <div id="TicTacToeTitle"></div>
+                    <div id="Player1"></div>
+                    <div id="IconPlayer1"></div>
+                    <div id="Player2"></div>
+                    <div id="IconPlayer2"></div>
+                    <div id="WinningBoard" class="ClsHide"> 
+                        <div id="WinPlayer0" class="ClsHide"></div>
+                        <div id="WinPlayer1" class="ClsHide"></div>
+                        <div id="WinPlayer2" class="ClsHide"></div>                        
+                    </div>
+                    <div id="ResetGame" class="ClsHide ClsDisableCont"></div>                    
+
+                    <div id="DvBoard"></div> 
+                    <canvas id='GameCanvas' width="950" height="950"></canvas>   
+                                          
+                    <div id="GameCont">
+                        <!-- <div class="ClsBox ClsR0 ClsC0 ClsP1"></div> -->
+                    </div>                         
+                </div> 
+                <!-- screen 0 : ends -->
+               
+                <div id ="DvCoverDiv" class="ClsHide"></div>
+            </div>
+            <!-- Screen Container : Ends -->           
+        </div>
+        <!-- Main Container : Ends -->        			
+        
+        
+         <!--Preloader : Starts-->
+        <div class="row">
+            <div id="html5Loader" class="col-sm-12">
+                <div id="DvLoaderCont">                
+                    <div id="DvLoaderProgress"></div>
+                    <div id="DvLoaderProgressBgText"> Loading ... </div>
+                </div>
+            </div>       
+        </div> 
+        <!--Preloader : Ends--> 
+                
+        <audio id="AudClick" preload="auto" src="assets/audios/click2.wav" type="audio/mpeg"></audio>
+        <audio id="AudGameEnd" preload="auto" src="assets/audios/win.wav" type="audio/mpeg"></audio>        
+        
+    </body>    
+</html>

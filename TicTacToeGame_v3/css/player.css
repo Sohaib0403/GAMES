@@ -1,0 +1,707 @@
+/*-- HTML CSS Starts --*/
+/* -- Fonts : Starts --*/
+@font-face {
+  font-family: "bungee-regular";
+  src: url("fonts/Bungee-Regular.woff") format("woff"),
+    url("fonts/Bungee-Regular.woff") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "verdana";
+  src: url("fonts/Verdana.woff") format("woff"),
+    url("fonts/Verdana.woff") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*Fonts : Ends*/
+/*! normalize - making reset / default for all browsers */
+*,
+html {
+  font-family: "verdana";
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+  -webkit-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+body {
+  background-color: #ffffff;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+  margin: 0px;
+  padding: 0px;
+  touch-action: manipulation !important;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+[hidden],
+template {
+  display: none;
+}
+
+a {
+  background: transparent;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+dfn {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+img {
+  border: 0;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+figure {
+  margin: 1em 40px;
+}
+
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+button {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  appearance: button;
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+input {
+  line-height: normal;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+input[type="search"] {
+  appearance: textfield;
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+fieldset {
+  border: 1px solid silver;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 5px 0;
+}
+
+b,
+strong,
+optgroup {
+  font-weight: 700;
+}
+
+pre,
+textarea {
+  overflow: auto;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner,
+legend {
+  border: 0;
+  padding: 0;
+}
+
+::selection {
+  background: transparent;
+}
+
+::-moz-selection {
+  background: transparent;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden !important;
+  touch-action: manipulation !important;
+}
+
+div {
+  touch-action: manipulation !important;
+}
+
+body {
+  font-family: "verdana";
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  background-color: #ffffff;
+  background-color: #ccc !important;
+}
+
+body input {
+  -webkit-touch-callout: text;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+body textarea {
+  -webkit-touch-callout: text;
+  -moz-touch-callout: text;
+  -ms-touch-callout: text;
+  -o-touch-callout: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  -o-user-select: text;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  -o-user-select: text;
+}
+
+/*-- HTML CSS Ends --*/
+
+/*-- Loader CSS Starts --*/
+#html5Loader {
+  top: 0;
+  left: 0;
+  margin: 0;
+  position: fixed;
+  z-index: 3;
+  background: #ffffff;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDA3NSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ5JSIgc3RvcC1jb2xvcj0iIzAwMDAzMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+  background: -moz-linear-gradient(left, #ffffff 0%, #ffffff 49%);
+  /* background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(49%,#ffffff)); */
+  background: -webkit-linear-gradient(left, #ffffff 0%, #ffffff 49%);
+  background: -o-linear-gradient(left, #ffffff 0%, #ffffff 49%);
+  background: -ms-linear-gradient(left, #ffffff 0%, #ffffff 49%);
+  background: linear-gradient(to right, #ffffff 0%, #ffffff 49%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1);
+}
+
+#html5Loader .fallback {
+  top: 50%;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  color: white;
+  /*vertical-align: middle;*/
+  /*display: block;font-style: normal;font-size:100px;*/
+}
+
+div#DvLoaderCont {
+  width: 300px;
+  height: 50px;
+  position: absolute;
+  top: -100px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  margin: auto;
+  z-index: 100;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+div#DvLoaderProgress {
+  width: 300px;
+  height: 50px;
+  position: absolute;
+  top: 0px;
+  left: -300px;
+  background: #0072c8;
+}
+
+div#DvLoaderProgressBgText {
+  width: 300px;
+  height: 0px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: #0072c8;
+  text-align: center;
+  font-size: 32px;
+  color: #ffffff;
+  line-height: 50px;
+  letter-spacing: 5px;
+  font-weight: bold;
+}
+
+/*-- Loader CSS Ends --*/
+
+/*--Player CSS Starts --*/
+div#DvMainCont {
+  width: 780px;
+  height: 750px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-family: "bungee-regular" !important;
+  background-color: #fcf7f8;
+  /* background-image: url("../assets/images/4.jpg"); */
+  /* background-image: url("../assets/images/Background.jpg"); */
+}
+
+div#BgLHS {
+  width: 200px;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-image: url("../assets/images/Background.jpg");
+}
+
+div#DvScrCont {
+  width: 780px;
+  height: 750px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+/*-- Global css : Starts --*/
+.ClsDisableCont {
+  pointer-events: none;
+  cursor: none;
+  display: block;
+  opacity: 0.5;
+}
+
+.ClsEnableCont {
+  pointer-events: auto;
+}
+
+.ClsHide {
+  display: none;
+}
+
+.ClsBlockCont {
+  pointer-events: none;
+  cursor: none;
+  /*background: rgba(0,0,0,0.5);*/
+}
+
+div#DvCoverDiv {
+  width: 780px;
+  height: 750px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+
+/**/
+
+/*-- Screen 0 : Starts --*/
+div#DvScr0 {
+  width: 780px;
+  height: 750px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+div#BgRHS {
+  width: 1190px;
+  height: 130px;
+  position: absolute;
+  bottom: 10px;
+  left: 325px;
+  /* background-image: url(../assets/images/SideArea.png); */
+  background-color: #fcf7f8;
+  border: 8px dashed black;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+div#TicTacToeTitle {
+  width: 180px;
+  height: 132px;
+  position: absolute;
+  top: 100px;
+  left: 10px;
+  background-image: url("../assets/images/TicTacToeTitle.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+div#Player1 {
+  width: 180px;
+  height: 75px;
+  position: absolute;
+  top: 300px;
+  left: 10px;
+  background-image: url("../assets/images/Player1.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+div#Player2 {
+  width: 180px;
+  height: 75px;
+  position: absolute;
+  top: 500px;
+  left: 10px;
+  background-image: url("../assets/images/Player2.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+div#IconPlayer1 {
+  width: 55px;
+  height: 55px;
+  position: absolute;
+  top: 407px;
+  left: 70px;
+  background-image: url("../assets/images/IconPlayer1.png");
+  background-size: cover;
+}
+
+div#IconPlayer2 {
+  width: 65px;
+  height: 65px;
+  position: absolute;
+  top: 603px;
+  left: 70px;
+  background-image: url("../assets/images/IconPlayer2.png");
+  background-size: cover;
+}
+
+div#WinningBoard {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 350px;
+  left: 0px;
+
+}
+
+div#WinPlayer0 {
+  width: 190px;
+  height: 190px;
+  position: absolute;
+  bottom: 70px;
+  left: 15px;
+  background-size: contain;
+  background-image: url("../assets/images/WinPlayer0.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+div#WinPlayer1 {
+  width: 190px;
+  height: 100px;
+  position: absolute;
+  bottom: 70px;
+  left: 10px;
+  background-size: contain;
+  background-image: url("../assets/images/WinPlayer1.png");
+  background-repeat: no-repeat;
+
+}
+
+div#WinPlayer2 {
+  width: 190px;
+  height: 190px;
+  position: absolute;
+  bottom: 70px;
+  left: 15px;
+  background-size: contain;
+  background-size: contain;
+  background-image: url("../assets/images/WinPlayer2.png");
+  background-repeat: no-repeat;
+}
+
+div#DvBoard {
+  width: 560px;
+  height: 560px;
+  position: absolute;
+  top: 90px;
+  left: 210px;
+  border: 20px solid #a31521;
+  background-color: #fcf7f8;
+  border-radius: 50px;
+  /* background-image: url("../assets/images/Board.png"); */
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+div#GameCont {
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  top: 120px;
+  left: 240px;
+  background-image: url("../assets/images/TicTacToe.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+canvas#GameCanvas {
+  width: 475px;
+  height: 475px;
+  position: absolute;
+  top: 130px;
+  left: 250px;
+  display: block;
+  z-index: 1;
+  border: 2px solid black;
+  display: none;
+  pointer-events: none !important;
+}
+
+div#ResetGame {
+  width: 190px;
+  height: 190px;
+  position: absolute;
+  background-image: url("../assets/images/replay1.webp");
+  top: 500px;
+  left: 5px;
+  cursor: pointer;
+  background-size: contain;
+  z-index: 2;
+  transition: transform .3s ease-in-out;
+}
+
+div#ResetGame:hover {
+  transform: scale(0.9, 0.9);
+}
+
+.ClsWinAnim {
+  width: 780px;
+  height: 750px;
+  position: absolute;
+  /* background-image: url("celebration.gif"); */
+  z-index: 1;
+  background-position: center;
+  background-size: cover;
+  /* border: 2px solid black; */
+  /* background: rgba(0,0,0,0.5); */
+}
+
+#WinAnim0 {
+  left: 0px;
+  top: 0px;
+  /* left: 700px;
+  top: 65px; */
+  border-top-left-radius: 35px !important;
+}
+
+#WinAnim1 {
+  left: 908px;
+  top: 140px;
+  border-top-right-radius: 35px !important;
+}
+
+#WinAnim2 {
+  left: 454px;
+  top: 526px;
+  border-top-right-radius: 35px !important;
+}
+
+#WinAnim3 {
+  left: 908px;
+  top: 526px;
+  border-top-right-radius: 35px !important;
+}
+
+div.ClsBox {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  /* background: rgba(0,0,0,0.5); */
+  font-family: "verdana" !important;
+  text-align: center;
+  font-size: 56px;
+  cursor: pointer;
+}
+
+div.ClsR0 {
+  top: 0px;
+}
+
+div.ClsR1 {
+  top: 175px;
+
+}
+
+div.ClsR2 {
+  top: 355px;
+}
+
+div.ClsC0 {
+  left: 0px;
+}
+
+div.ClsC1 {
+  left: 175px;
+
+}
+
+div.ClsC2 {
+  left: 358px;
+}
+
+div.ClsP1 {
+  background-image: url("../assets/images/IconPlayer1.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+  color: transparent !important;
+  cursor: none;
+}
+
+div.ClsP2 {
+  background-image: url("../assets/images/IconPlayer2.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+  color: transparent !important;
+  cursor: none;
+
+}
+
+/*-- Screen 0 : Ends --*/

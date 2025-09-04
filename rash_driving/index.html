@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rash driving</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="scale-wrapper">
+         <div id="game-container" class="game-container">
+        <div id="startScreen">
+            <h1 id="gameTitle">🚗 Car Racing Fun! 🏁</h1>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem; text-align: center;">
+                🎯 Avoid the obstacles!<br>
+                🏆 Collect points and survive!
+            </p>
+            
+            <button class="mode-button" id="easyMode">🐌 EASY MODE</button>
+            <button class="mode-button" id="mediumMode">🐰 MEDIUM MODE</button>
+            <button class="mode-button" id="hardMode">🚀 HARD MODE</button>
+            
+            <div id="instructions">
+                <p><strong>🎮 Controls:</strong></p>
+                <p>← → Arrow Keys or A/D</p>
+                <p>Move left and right to dodge!</p>
+            </div>
+        </div>
+
+        <canvas id="gameCanvas" width="772" height="742"></canvas>
+
+        <div id="gameUI">
+            <div id="score">🏆 Score: 0</div>
+            <div id="lives">❤️ Lives: 3</div>
+            <div id="mode">🎯 Mode: Easy</div>
+        </div>
+
+        <div id="endScreen">
+            <h2 id="endTitle">🏁 Game Over!</h2>
+            <p id="finalScore">Final Score: 0</p>
+            <button id="restartButton">🔄 Play Again</button>
+        </div>
+    </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function resizeGameContainer() {
+            const gameContainer = document.querySelector('.game-container');
+            if (!gameContainer) return;
+
+            // Fixed base dimensions
+            const baseWidth = 780;
+            const baseHeight = 750;
+
+            // Screen size
+            const availableWidth = window.innerWidth;
+            const availableHeight = window.innerHeight;
+
+            // Keep aspect ratio
+            const scale = Math.min(
+                availableWidth / baseWidth,
+                availableHeight / baseHeight
+            );
+
+            // Apply scaling
+            gameContainer.style.transform = `scale(${scale})`;
+            gameContainer.style.transformOrigin = "top left";
+
+            // Center it
+            const scaledWidth = baseWidth * scale;
+            const scaledHeight = baseHeight * scale;
+
+            gameContainer.style.position = "absolute";
+            gameContainer.style.left = `${(availableWidth - scaledWidth) / 2}px`;
+            gameContainer.style.top = `${(availableHeight - scaledHeight) / 2}px`;
+        }
+
+        // Run on load + resize
+        window.addEventListener("load", resizeGameContainer);
+        window.addEventListener("resize", resizeGameContainer);
+
+
+    </script>
+
+</body>
+
+</html>

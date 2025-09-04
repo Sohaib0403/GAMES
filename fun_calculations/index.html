@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Adventure Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="scale-wrapper">
+        <div class="game-container">
+            <div class="header">
+                <div style="display: flex; align-items: center;">
+                    <div class="score">Score: <span id="scoreValue">0</span></div>
+                    <div class="hearts" id="hearts">
+                        <span class="heart">❤️</span>
+                        <span class="heart">❤️</span>
+                        <span class="heart">❤️</span>
+                        <span class="heart">❤️</span>
+                        <span class="heart">❤️</span>
+                    </div>
+                </div>
+                <button class="home-btn" onclick="showModeSelection()">🏠 Home</button>
+            </div>
+
+            <div class="mode-selection" id="modeSelection">
+                <h1 class="mode-title">🌟 Math Adventure 🌟</h1>
+                <div class="mode-buttons">
+                    <button class="mode-btn" onclick="startGame('addition')">➕ Addition</button>
+                    <button class="mode-btn" onclick="startGame('subtraction')">➖ Subtraction</button>
+                    <button class="mode-btn" onclick="startGame('multiplication')">✖️ Multiplication</button>
+                    <button class="mode-btn" onclick="startGame('division')">➗ Division</button>
+                    <button class="mode-btn" onclick="startGame('random')" style="grid-column: 2/3;">🎲 Random
+                        Mix</button>
+                </div>
+            </div>
+
+            <div class="game-area" id="gameArea">
+                <div class="level-info">Level: <span id="levelValue">1</span></div>
+                <div class="equation" id="equation"></div>
+                <input type="number" class="answer-input" id="answerInput" placeholder="?">
+                <br>
+                <button class="submit-btn" onclick="checkAnswer()">Submit Answer 🚀</button>
+            </div>
+
+            <div class="game-over" id="gameOver">
+                <h2>🎮 Game Over! 🎮</h2>
+                <div class="final-score">Final Score: <span id="finalScore">0</span></div>
+                <button class="replay-btn" onclick="resetGame()">🔄 Play Again</button>
+            </div>
+
+            <div class="animation-overlay" id="animationOverlay">
+                <div class="animation-content" id="animationContent"></div>
+                <div class="stars" id="stars"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js">
+    </script>
+    <script>
+        function resizeGame() {
+            const gameContainer = document.querySelector('.game-container');
+            const wrapper = document.querySelector('.scale-wrapper');
+
+            const scaleX = wrapper.clientWidth / 780;
+            const scaleY = wrapper.clientHeight / 750;
+            const scale = Math.min(scaleX, scaleY); // Keep aspect ratio
+
+            gameContainer.style.transform = `scale(${scale})`;
+        }
+
+        // Call on load and resize
+        window.addEventListener('load', resizeGame);
+        window.addEventListener('resize', resizeGame);
+    </script>
+
+</body>
+
+</html>

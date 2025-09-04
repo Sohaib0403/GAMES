@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui, width = device-width'
+        name='viewport' />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="HandheldFriendly" content="true" />
+    <title>Representing counts on the graphs</title>
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="css/player.css" />
+    <!-- Libs Starts -->
+    <script type="text/javascript" src="com/libs/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="com/libs/jquery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="com/libs/device/device.min.js"></script>
+    <script type="text/javascript" src="com/libs/demoUtils.js"></script>
+    <script type="text/javascript" src="com/libs/createjs/easeljs.js"></script>
+    <script type="text/javascript" src="com/libs/createjs/tweenjs.js"></script>
+    <!-- Loader Libraries Starts -->
+    <script type="text/javascript" src="com/libs/preloader/jquery.html5Loader.min.js"></script>
+    <script type="text/javascript" src="com/libs/preloader/animation/jquery.big-counter.js"></script>
+    <script type="text/javascript" src="com/libs/preloader/Main.class.js"></script>
+    <script type="text/javascript" src="com/libs/preloader/configPreload.js"></script>
+    <!--Loader Libraries Ends -->
+    <!-- Libs Ends -->
+    <script type="text/javascript" src="com/lo/config.js"></script>
+    <script type="text/javascript" src="com/lo/data.js"></script>
+    <script type="text/javascript" src="com/lo/playerController.js"></script>
+    <script type="text/javascript" src="com/libs/jquery/jquery.ui.touch-punch.js"></script>
+    <script>
+        document.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+        }, { passive: false });
+        var lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            var now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 50) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, { passive: false }); 
+    </script>
+</head>
+
+<body>
+    <!-- Main Container : Starts -->
+    <div id="DvMainCont">
+        <div id="layer">
+
+            <div id="DvQuestion">Now, you have to look at these objects (point at the objects column) and the
+                number
+                given here (point at the numbers), then make tally marks to represent the number given here. (I
+                have done the first one for you, now you do the same for car, cat and flute).</div>
+        </div>
+        <div id="play"></div>
+        <!-- Screen Container : Starts -->
+        <div id="DvScrCont">
+            <!-- screen 0 : starts -->
+            <div id="DvScr0" style="display: none;">
+                <div id="DvHeader">
+                        <div id="DvResetDrawing0" class="ClsResetBtn ClsDisableCont">Reset All</div>
+                    <div id="DvResetDrawing1" class="ClsResetBtn ClsDisableCont">Reset</div>
+                    <div id="DvResetDrawing2" class="ClsResetBtn ClsDisableCont">Reset</div>
+                    <div id="DvResetDrawing3" class="ClsResetBtn ClsDisableCont">Reset</div>
+                    <div id="DvShowAnswer1" class="ClsResetBtn ClsDisableCont">Show Answer</div>
+                    <div id="DvShowAnswer2" class="ClsResetBtn ClsDisableCont">Show Answer</div>
+                    <div id="DvShowAnswer3" class="ClsResetBtn ClsDisableCont">Show Answer</div>
+                </div>
+                <div id="DvBody">
+                    <div id="BoardBg">
+                        <div id="DvLabel0" class="ClsLabel">Object</div>
+                        <div id="DvLabel1" class="ClsLabel">Tally</div>
+                        <div id="DvLabel2" class="ClsLabel">Total</div>
+                        <div id="DvObject0"></div>
+                        <div id="DvObject1"></div>
+                        <div id="DvObject2"></div>
+                        <div id="DvObject3"></div>
+                        <div id="DvNum0" class="ClsNum">12</div>
+                        <div id="DvNum1" class="ClsNum">16</div>
+                        <div id="DvNum2" class="ClsNum">20</div>
+                        <div id="DvNum3" class="ClsNum">8</div>
+                    </div>
+                    <div id="DvCanvasCont">
+                        <canvas id="CvCanvas0" width="425" height="113"></canvas>
+                        <canvas id="CvCanvas1" width="425" height="113"></canvas>
+                        <canvas id="CvCanvas2" width="425" height="113"></canvas>
+                        <canvas id="CvCanvas3" width="425" height="113"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- screen 0 : ends -->
+        </div>
+        <!-- Screen Container : Ends -->
+    </div>
+    <!-- Main Container : Ends -->
+
+    <!--Preloader : Starts-->
+    <div class="row">
+        <div id="html5Loader" class="col-sm-12">
+            <div id="DvLoaderCont">
+                <div id="DvLoaderProgress"></div>
+                <div id="DvLoaderProgressBgText"> Loading ... </div>
+            </div>
+        </div>
+    </div>
+    <!--Preloader : Ends-->
+    <!-- <audio id="AudInit" src="assets/audios/audio1.mp3" type="audio/mpeg" onended="OnAudioEnded()"></audio>-->
+
+</body>
+
+</html>

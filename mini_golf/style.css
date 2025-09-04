@@ -1,0 +1,183 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #c2f0c2;
+}
+
+#gameWrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+
+
+#game {
+  width: 700px;
+  height: 500px;
+  margin: 30px auto;
+  background: #7cfc00;
+  position: relative;
+  border: 10px solid #004400;
+  overflow: hidden;
+  background-image: url("images/bg1.jpg");
+  border-radius: 30px;
+}
+
+#ball {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  cursor: grab;
+  background-image: url(images/ball2.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  box-shadow: 5px 0 5px black;
+  z-index: 1;
+}
+
+#hole {
+  width: 55px;
+  height: 55px;
+
+  background-image: url(images/hole.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 50%;
+  position: absolute;
+}
+
+#message {
+  height: 600px;
+  width: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: #004400;
+  font-weight: bold;
+  background-image: url(images/win1.webp);
+  background-size: contain;
+  display: none;
+  z-index: 1;
+}
+
+#score,
+#timer {
+  position: absolute;
+  top: 40px;
+  font-size: 35px;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: aquamarine;
+  box-shadow: inset 0 0 5px black;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#score {
+  left: 50px;
+}
+
+#timer {
+  right: 50px;
+}
+
+#endScreen {
+  width: 70%;
+  height: 60%;
+  text-align: center;
+  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  border: 10px solid #004400;
+  font-size: 60px;
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+#ground {
+  width: 780px;
+  height: 750px;
+  position: absolute;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(images/bg4.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+#startScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  color: white;
+  font-size: 2rem;
+}
+
+#startScreen button {
+  width: 200px;
+  height: 60px;
+  padding: 10px 20px;
+  font-size: 2rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #00cc66;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+  z-index: 5;
+  position: absolute;
+  top: 500px;
+}
+
+#startScreen button:hover {
+  background-color: #00994d;
+}
+
+#replay {
+  height: 60px;
+  width: 200px;
+  background-color: #7cfc00;
+  border-radius: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #004400;
+  border: 5px solid #004400;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px black;
+  position: absolute;
+  bottom: 170px;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+#logo {
+  height: 300px;
+  border: 2px solid #004400;
+  border-radius: 20px;
+  position: absolute;
+  top: 120px;
+}

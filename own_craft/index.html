@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CraftWorld 3D</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="gameContainer">
+        <!-- Start Screen -->
+        <div id="startScreen">
+            <h1 id="title">🌍 CRAFTWORLD 3D</h1>
+            <button class="menu-button" onclick="startGame()">🎮 New World</button>
+            <button class="menu-button" onclick="showInstructions()">📖 How to Play</button>
+            <button class="menu-button" onclick="showCredits()">ℹ️ About</button>
+        </div>
+
+        <!-- Loading Screen -->
+        <div id="loadingScreen">
+            <div class="loading-text">Generating World... 🌍</div>
+        </div>
+
+        <!-- Game Canvas -->
+        <canvas id="gameCanvas" class="hidden"></canvas>
+
+        <!-- Game UI -->
+        <div id="gameUI" class="hidden">
+            <button id="homeButton" onclick="goHome()">🏠 Home</button>
+
+            <div id="crosshair"></div>
+
+            <div id="hud">
+                <div id="inventory">
+                    <div class="inventory-slot selected" data-block="grass">🟩<span class="block-count">∞</span></div>
+                    <div class="inventory-slot" data-block="stone">⬜<span class="block-count">∞</span></div>
+                    <div class="inventory-slot" data-block="wood">🟫<span class="block-count">∞</span></div>
+                    <div class="inventory-slot" data-block="sand">🟨<span class="block-count">∞</span></div>
+                    <div class="inventory-slot" data-block="water">🟦<span class="block-count">∞</span></div>
+                    <div class="inventory-slot" data-block="lava">🟥<span class="block-count">∞</span></div>
+                </div>
+                <div id="controls">
+                    WASD: Move | Mouse: Look | Click: Mine/Place<br>
+                    Space: Jump | Shift: Sneak | 1-6: Select Block
+                </div>
+            </div>
+        </div>
+
+        <!-- About / Instructions Popup -->
+        <div id="popupOverlay" class="popup-overlay hidden">
+            <div class="popup-box">
+                <h2 id="popupTitle"></h2>
+                <div id="popupContent"></div>
+                <button class="close-btn" onclick="closePopup()">✖ Close</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        function resizeGame() {
+            const container = document.getElementById("gameContainer");
+
+            // Target fixed game size
+            const gameWidth = 780;
+            const gameHeight = 750;
+
+            // Available window size
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            // Calculate scale factor (fit to screen)
+            const scale = Math.min(windowWidth / gameWidth, windowHeight / gameHeight);
+
+            // Apply transform scaling
+            container.style.transform = `scale(${scale})`;
+
+            // Center horizontally & vertically
+            container.style.left = `${(windowWidth - gameWidth * scale) / 2}px`;
+            container.style.top = `${(windowHeight - gameHeight * scale) / 2}px`;
+            container.style.position = "absolute";
+        }
+
+        // Run on load + resize
+        window.addEventListener("load", resizeGame);
+        window.addEventListener("resize", resizeGame);
+    </script>
+</body>
+
+</html>

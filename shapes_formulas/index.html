@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Shapes Math Master</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="scale-wrapper">
+        <div class="game-container">
+            <!-- Start Screen -->
+            <div class="screen start-screen active" id="startScreen">
+                <h1 class="game-title">🎲 3D SHAPES MASTER 🎲</h1>
+                <p class="subtitle">Learn shapes parameters with fun!</p>
+                <button class="start-btn" onclick="startGame()">START ADVENTURE</button>
+            </div>
+
+            <!-- Game Screen -->
+            <div class="screen game-screen" id="gameScreen">
+                <div class="game-header">
+                    <div class="score">Score: <span id="scoreValue">0</span></div>
+                    <div class="lives">❤️ Lives: <span id="livesValue">5</span></div>
+                    <button class="home-btn" onclick="goHome()">🏠 HOME</button>
+                </div>
+
+                <div class="question-area">
+                    <div class="level-info">Level <span id="levelValue">1</span></div>
+                    <div class="question" id="questionText">What is the volume of this cube?</div>
+                </div>
+
+                <div class="shape-container" id="shapeContainer">
+                    <!-- Shape will be generated here -->
+                </div>
+
+                <div class="answer-area" id="answerArea">
+                    <!-- Answer buttons will be generated here -->
+                </div>
+            </div>
+
+            <!-- Correct Answer Screen -->
+            <div class="screen feedback-screen correct-screen" id="correctScreen">
+                <div class="stars" id="starsContainer"></div>
+                <div class="feedback-emoji">🎉</div>
+                <div class="feedback-message">AWESOME!</div>
+                <button class="continue-btn" onclick="nextQuestion()">CONTINUE</button>
+            </div>
+
+            <!-- Wrong Answer Screen -->
+            <div class="screen feedback-screen wrong-screen" id="wrongScreen">
+                <div class="feedback-emoji">😞</div>
+                <div class="feedback-message">TRY AGAIN!</div>
+                <button class="continue-btn" onclick="nextQuestion()">CONTINUE</button>
+            </div>
+
+            <!-- End Screen -->
+            <div class="screen end-screen" id="endScreen">
+                <h2>🎊 GAME OVER 🎊</h2>
+                <div class="final-score">Final Score: <span id="finalScore">0</span></div>
+                <button class="replay-btn" onclick="restartGame()">🔄 PLAY AGAIN</button>
+                <button class="replay-btn" onclick="goHome()">🏠 HOME</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+       window.addEventListener("resize", resizeGame);
+        window.addEventListener("load", resizeGame);
+
+        function resizeGame() {
+            const game = document.querySelector(".game-container");
+            const wrapper = document.querySelector(".scale-wrapper");
+
+            // Fixed design size of game container
+            const designWidth = 780;
+            const designHeight = 750;
+
+            // Available screen size
+            const availableWidth = wrapper.clientWidth;
+            const availableHeight = wrapper.clientHeight;
+
+            // Scale factor (fit to smaller side)
+            const scale = Math.min(
+                availableWidth / designWidth,
+                availableHeight / designHeight
+            );
+
+            // Apply scaling & center
+            game.style.transform = `scale(${scale})`;
+            game.style.transformOrigin = "top left";
+
+            // Center inside wrapper
+            const offsetX = (availableWidth - designWidth * scale) / 2;
+            const offsetY = (availableHeight - designHeight * scale) / 2;
+            game.style.position = "absolute";
+            game.style.left = offsetX + "px";
+            game.style.top = offsetY + "px";
+        }
+        
+
+        // Run once on load
+        resizeGame();
+
+        // Adjust when resizing
+        window.addEventListener("resize", resizeGame);
+    </script>
+
+
+</body>
+
+</html>

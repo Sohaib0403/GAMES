@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">
+	<meta name="screen-orientation" content="landscape">
+	<meta http-equiv="Content-Language" content="mathQuiz">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href="css/math-quiz.css?version=0.1" rel="stylesheet" type="text/css">
+	<script src="script/mathQuiz.js?version=0.1"></script>
+	<script src="declaration/mathQuizdeclaration.js?version=0.1"></script>
+
+</head>
+
+<body>
+	<div class="math-quiz-wrapper">
+	<div id="mathQuizContent" class="math-quiz-content">
+		<div class="gamestart">
+			<img src="image/playbtn.png" alt="" id="playbtn" class="playbtn">
+		</div>
+
+		<div id="mathQuizQuestionContainer" class="math-quiz-question-container"></div>
+		<div id="mathQuizAnswerCorrectScorebox" class="math-quiz-answer-correct-scorebox">
+			<div id="mathQuizCorrectScoreText" class="math-quiz-correct-score-text">0</div>
+		</div>
+		<div id="mathQuizAnswerCorrectSmiley" class="math-quiz-answer-correct-smiley"></div>
+		<div class="math-quiz-answer-wrong-scorebox">
+			<div id="mathQuizWrongScoreText" class="math-quiz-wrong-score-text">0</div>
+		</div>
+		<div id="mathQuizAnswerWrongSmiley" class="math-quiz-answer-wrong-smiley"></div>
+		<div id="mathQuizComplete" class="math-quiz-complete">
+			<img src="image/gameover.png" alt="">
+			<img src="image/replay.png" alt="" id="replaybtn" class="replaybtn">
+			<div class="score"></div>
+		</div>
+
+	</div>
+</div>
+	
+<script>
+	function scaleQuizContent() {
+	  const baseWidth = 780;
+	  const baseHeight = 750;
+  
+	  const wrapper = document.querySelector('.math-quiz-wrapper');
+	  const content = document.getElementById('mathQuizContent');
+  
+	  const scaleX = wrapper.clientWidth / baseWidth;
+	  const scaleY = wrapper.clientHeight / baseHeight;
+	  const scale = Math.min(scaleX, scaleY); // preserve aspect ratio
+  
+	  content.style.transform = `scale(${scale})`;
+  
+	  // Optional: center it better
+	  content.style.left = `${(wrapper.clientWidth - baseWidth * scale) / 2}px`;
+	  content.style.top = `${(wrapper.clientHeight - baseHeight * scale) / 2}px`;
+	  content.style.position = 'absolute';
+	}
+  
+	window.addEventListener('resize', scaleQuizContent);
+	window.addEventListener('load', scaleQuizContent);
+  </script>
+  
+
+	
+	
+</body>
+
+</html>

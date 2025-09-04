@@ -1,0 +1,251 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    background: #f0f8ff;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.maincontainer {
+    width: 780px; /* REMOVE this fixed width */
+    /* max-width: 100%; allow it to stretch to full width on mobile */
+    height: 750px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url(images/bg.webp);
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+#mode-buttons {
+    margin: 20px;
+}
+
+.mode-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius:50px ;
+    border: none;
+    background-color: #f0f0f0;
+}
+
+.mode-btn.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 2px solid #333;
+}
+
+#game-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    >* {
+        box-sizing: border-box;
+    }
+
+ 
+    h1,
+    h2 {
+        margin: 10px;
+    }
+
+    #mode-buttons {
+        margin: 10px 0;
+    }
+
+    .mode-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 0 10px;
+        cursor: pointer;
+    }
+
+    .mode-btn.active {
+        background-color: #4CAF50;
+        color: white;
+        border: 2px solid #333;
+    }
+
+    #game-area {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        margin-top: 20px;
+        flex-grow: 1;
+    }
+
+  
+
+    #items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        max-width: 300px;
+        justify-content: center;
+    }
+
+    .draggable {
+        width: 60px;
+        height: 60px;
+        background-color: #ddd;
+        border: 2px solid #333;
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 60px;
+        text-align: center;
+        cursor: grab;
+        border-radius: 10px;
+        user-select: none;
+    }
+
+    .color-red {
+        background: red;
+        color: white;
+    }
+
+    .color-green {
+        background: green;
+        color: white;
+    }
+
+    .color-blue {
+        background: blue;
+        color: white;
+    }
+
+    .color-yellow {
+        background: yellow;
+        color: black;
+    }
+
+    .color-orange {
+        background: orange;
+        color: black;
+    }
+
+    .color-purple {
+        background: purple;
+        color: white;
+    }
+
+    .color-pink {
+        background: pink;
+        color: black;
+    }
+
+    .color-brown {
+        background: brown;
+        color: white;
+    }
+
+    .color-black {
+        background: black;
+        color: white;
+    }
+
+    .color-gray {
+        background: gray;
+        color: white;
+    }
+
+    gap: 40px;
+    margin-top: 20px;
+}
+
+#Monster {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 4px solid #333;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: border-color 0.3s ease;
+}
+
+#Monster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+#question{
+    position: absolute;
+    top: 40px;
+    height: 80px;
+    width: auto;
+    padding: 0 30px 0 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background: rgba(255, 193, 48, 0.8);
+    border: 5px solid #fa7272;
+}
+
+
+#items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: 300px;
+    justify-content: center;
+}
+
+.draggable {
+    width: 60px;
+    height: 60px;
+    background-color: #ddd;
+    border: 2px solid #333;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 60px;
+    text-align: center;
+    cursor: grab;
+    border-radius: 10px;
+}
+
+.color-red {
+    background: red;
+    color: white;
+}
+
+.color-green {
+    background: green;
+    color: white;
+}
+
+.color-blue {
+    background: blue;
+    color: white;
+}

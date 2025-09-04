@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui, width = device-width'
+        name='viewport' />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="HandheldFriendly" content="true" />
+    <title>Draws hands of the clock according to the given time</title>
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="css/player.css" />
+
+    <!-- Libs Starts -->
+    <script type="text/javascript" src="com/libs/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="com/libs/jquery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="com/libs/device/device.min.js"></script>
+    <script type="text/javascript" src="com/libs/demoUtils.js"></script>
+    <script type="text/javascript" src="com/libs/createjs/easeljs.js"></script>
+    <script type="text/javascript" src="com/libs/createjs/tweenjs.js"></script>
+
+    <!-- Loader Libraries Starts -->
+    <script type="text/javascript" src="com/libs/preloader/jquery.html5Loader.min.js"></script>
+    <script type="text/javascript" src="com/libs/preloader/animation/jquery.big-counter.js"></script>
+    <script type="text/javascript" src="com/libs/preloader/Main.class.js"></script>
+    <script type="text/javascript" src="com/libs/preloader/configPreload.js"></script>
+    <!--Loader Libraries Ends -->
+
+    <!-- Libs Ends -->
+
+    <script type="text/javascript" src="com/lo/config.js"></script>
+    <script type="text/javascript" src="com/lo/data.js"></script>
+    <script type="text/javascript" src="com/lo/playerController.js"></script>
+    <script type="text/javascript" src="com/libs/jquery/jquery.ui.touch-punch.js"></script>
+
+    <script>
+        document.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+        }, { passive: false });
+
+        var lastTouchEnd = 0;
+
+        document.addEventListener('touchend', function (event) {
+            var now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 50) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, { passive: false });
+
+    </script>
+</head>
+
+<body>
+    <!-- Main Container : Starts -->
+    <div id="DvMainCont">
+        <!-- Screen Container : Starts -->
+        <div id="DvScrCont">
+            <!-- screen 0 : starts -->
+            <div id="DvScr0" style="display: none;">
+                <div id="DvHeader">
+                    <div id="DvQuestion">Read the given time carefully and draw it on the given clock.</div>
+                </div>
+                <div id="DvBody">
+                    <div id="DvTime">03:00</div>
+                    <div id="DvCanvasCont">
+                        <canvas id="CvCanvas" width="460" height="460" background="transparent"></canvas>
+                    </div>
+                </div>
+                <div id="DvFooter">
+                    <div id="DvFooterInner">
+                        <div id="DvCheckAns" class="FooterBtn" style="display: none;">Check Answer</div>
+                        <div id="DvNextQues" class="FooterBtn" style="display: none;">Next</div>
+                        <div id="DvReplay" class="FooterBtn" style="display: none;">Replay</div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- screen 0 : ends -->
+        </div>
+        <!-- Screen Container : Ends -->
+    </div>
+    <!-- Main Container : Ends -->
+    <!-- <div id ="DvCoverDiv"></div> -->
+
+    <!--Preloader : Starts-->
+    <div class="row">
+        <div id="html5Loader" class="col-sm-12">
+            <div id="DvLoaderCont">
+                <div id="DvLoaderProgress"></div>
+                <div id="DvLoaderProgressBgText"> Loading ... </div>
+            </div>
+        </div>
+    </div>
+    <!--Preloader : Ends-->
+
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#game-container {
+  position: absolute;
+  width: 780px;
+  /* virtual width */
+  height: 750px;
+  /* virtual height */
+  transform-origin: top left;
+  background: url(images/road2.png);
+  background-size: contain;
+  background-position: center;
+  overflow: hidden;
+}
+
+/* Stars will be dynamically added to #background */
+   .start-screen {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .start-screen button {
+      padding: 10px 20px;
+      font-size: 20px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .player {
+      position: absolute;
+      width: 55px;
+      height: 110px;
+      background: url(images/maincar.png) ;
+      background-size: contain;
+      bottom: 20px;
+      left: 360px;
+      border-radius: 10px;
+    }
+
+    .obstacle {
+      position: absolute;
+      width: 60px;
+      height: 100px;
+      background: transparent;
+      top: -120px;
+      border-radius: 10px;
+    }
+
+    .game-over {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      font-size: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 11;
+    }
+
+    

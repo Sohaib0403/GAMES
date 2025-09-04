@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">        
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui, width = device-width' name='viewport' />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="HandheldFriendly" content="true" />
+		
+        <title>Click the Word</title>       
+		
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />                        
+        <link rel="stylesheet" type="text/css" href="css/player.css" />     
+		
+		<!-- Libs Starts -->
+		<script type="text/javascript" src="com/libs/jquery/jquery-3.3.1.min.js"></script>        
+        <script type="text/javascript" src="com/libs/jquery/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="com/libs/device/device.min.js"></script>                   
+
+        <!-- Loader Libraries Starts -->
+        <script type="text/javascript" src="com/libs/preloader/jquery.html5Loader.min.js"></script>
+        <script type="text/javascript" src="com/libs/preloader/animation/jquery.big-counter.js"></script>     
+        <script type="text/javascript" src="com/libs/preloader/Main.class.js"></script>
+        <script type="text/javascript" src="com/libs/preloader/configPreload.js"></script> 
+        <!--Loader Libraries Ends --> 
+
+        <!-- Libs Ends -->  
+
+        <script type="text/javascript" src="com/lo/config.js"></script>
+        <script type="text/javascript" src="data/data.js"></script>         
+        <script type="text/javascript" src="com/lo/commonFunctions.js"></script>     
+        <script type="text/javascript" src="com/lo/playerController.js"></script>        
+        <script type="text/javascript" src="com/lo/screenController.js"></script>        
+                       
+        <script type="text/javascript" src="com/libs/jquery/jquery.ui.touch-punch.js"></script>
+        
+        <script>    
+			document.addEventListener('touchmove', function(e) {e.preventDefault();}, { passive: false });
+			var lastTouchEnd = 0;
+			document.addEventListener('touchend', function (event) {
+				var now = (new Date()).getTime();
+				if (now - lastTouchEnd <= 50) {event.preventDefault();}
+				lastTouchEnd = now;
+            }, { passive: false });             
+
+    	</script>
+    </head>
+	<body>
+        <!-- Main Container : Starts -->                
+        <div id="DvMainCont">
+            <!-- Screen Container : Starts -->
+            <div id="DvScrCont">              
+                <!-- screen 0 : starts -->
+                <div id="DvScr0" style="display: none;">
+                    <div id="DvMissingWords"></div>
+                    <!-- <div id="DvLogo0" class="ClsLogo"></div> -->
+                    <div id="DvStartBtn"></div>
+                </div> 
+                <!-- screen 0 : ends -->  
+
+                <!-- screen 1 : starts -->
+                <div id="DvScr1" style="display: none;"> 
+                    <!-- <div id="DvLogo1" class="ClsLogo"></div> -->
+                    <!-- <div id="DvLabel1"></div> -->
+                    <div id="wordbg">
+                        <div id="DvWordBg0"></div>    
+                        <div id="DvWordBg1"></div>    
+                    </div>
+                    
+                    <div id="DvMessage" style="display: none;"></div>               
+                    <div id="DvContStar"></div>
+                    <div id="DvPrev"></div>
+                    <div id="DvNext"></div>
+                    
+                </div> 
+                <!-- screen 1 : ends -->
+
+                <!-- screen 2 : starts -->
+                <div id="DvScr2" style="display: none;">
+                    <!-- <div id="DvTotalQues" class="ClsLabel"></div>
+                    <div id="CorrectAns" class="ClsLabel"></div>
+                    <div id="IncorrectAns" class="ClsLabel"></div> -->
+                    <!-- <div id="DvLogo2" class="ClsLogo"></div> -->
+                    <div id="DvFantastic"></div>                    
+                    <div id="DvReplay"></div>                                      
+                </div> 
+                <!-- screen 2 : ends -->  
+
+                <div id ="DvCoverDiv" style="display: none;"></div>
+            </div>
+            <!-- Screen Container : Ends -->           
+        </div>
+        <!-- Main Container : Ends -->        			
+        
+        
+         <!--Preloader : Starts-->
+        <div class="row">
+            <div id="html5Loader" class="col-sm-12">
+                <div id="DvLoaderCont">                
+                    <div id="DvLoaderProgress"></div>
+                    <div id="DvLoaderProgressBgText"> Loading ... </div>
+                </div>
+            </div>       
+        </div> 
+        <!--Preloader : Ends-->                        
+        <!-- <audio id="AudCorrect" src="assets/audios/correct.mp3" type="audio/mpeg"></audio>         -->
+        <audio id="AudIncorrect" src="assets/audios/incorrect.mp3" type="audio/mpeg"></audio>        
+        <audio id="AudGameEnd" src="assets/audios/gameComplete.mp3" type="audio/mpeg"></audio>        
+        
+    </body>    
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Subway Word Collector</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="outerWrapper">
+        <div id="gameContainer">
+            <!-- Start Screen -->
+            <div id="startScreen">
+                <h1>🚇 3D Word Collector 📚</h1>
+                <p class="instructions">
+                    Run through the 3D subway tunnel and collect letters to spell words!<br>
+                    Use arrow keys or swipe to move, jump, and slide through obstacles.
+                </p>
+                <h2 style="color: white; margin: 20px 0;">Choose Your Age Group:</h2>
+                <button class="button age-button" onclick="startGame(5)">Ages 5-10</button>
+                <button class="button age-button" onclick="startGame(10)">Ages 10-15</button>
+            </div>
+
+            <!-- Game Screen -->
+            <div id="gameScreen" class="hidden">
+                <div class="loading" id="loadingText">Loading 3D World...</div>
+                <canvas id="gameCanvas"></canvas>
+
+                <div id="UI">
+                    <div>Lives: ❤️ <span id="lives">3</span></div>
+                    <div>Score: 🏆 <span id="score">0</span></div>
+                    <div>Words: 📝 <span id="wordsCompleted">0</span></div>
+                </div>
+
+                <div id="currentWord">HELLO</div>
+                <div class="collected-letters" id="collectedLetters"></div>
+
+                <button id="homeButton" onclick="goHome()">🏠</button>
+
+                <div id="controls">
+                    <button id="pauseBtn" class="button" onclick="togglePause()">⏸️ Pause</button>
+                </div>
+            </div>
+
+            <!-- End Screen -->
+            <div id="endScreen" class="hidden">
+                <h1>🎉 Game Over! 🎉</h1>
+                <div style="color: white; font-size: 1.5em; text-align: center; margin: 20px 0;">
+                    <div>🏆 Final Score: <span id="finalScore">0</span></div>
+                    <div>📝 Words Completed: <span id="finalWords">0</span></div>
+                </div>
+                <button class="button" onclick="goHome()">🏠 Home</button>
+                <button class="button" onclick="restartGame()">🔄 Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
+    <script src="script.js">
+
+    </script>
+    <script>
+        function resizeGame() {
+    const gameContainer = document.getElementById("gameContainer");
+    const outerWrapper = document.getElementById("outerWrapper");
+
+    const scaleX = outerWrapper.clientWidth / 780;
+    const scaleY = outerWrapper.clientHeight / 750;
+    const scale = Math.min(scaleX, scaleY);
+
+    gameContainer.style.transform = `scale(${scale})`;
+    gameContainer.style.transformOrigin = "top left";
+    // Optionally center the container
+    gameContainer.style.position = "absolute";
+    gameContainer.style.left = `${(outerWrapper.clientWidth - 780 * scale) / 2}px`;
+    gameContainer.style.top = `${(outerWrapper.clientHeight - 750 * scale) / 2}px`;
+}
+
+window.addEventListener("load", resizeGame);
+window.addEventListener("resize", resizeGame);
+
+    </script>
+
+</body>
+
+</html>
