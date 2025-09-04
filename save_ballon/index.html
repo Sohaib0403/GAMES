@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Balloon Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="scale-wrapper">
+        <div class="game-container" id="gameContainer">
+            <div class="start-screen" id="startScreen">
+                <h1 class="game-title">Math Balloon Pop!</h1>
+                <button class="start-button" onclick="startGame()">Start Game</button>
+            </div>
+
+            <button class="home-button" onclick="goHome()" style="display: none;" id="homeButton">🏠 Home</button>
+
+            <div class="game-ui" id="gameUI" style="display: none;">
+                <div class="lives">❤️ Lives: <span id="livesCount">6</span></div>
+                <div class="score">⭐ Score: <span id="scoreCount">0</span></div>
+                <div class="timer">⏰ Time: <span id="timeCount">0</span>s</div>
+            </div>
+
+            <div class="answer-box" id="answerBox" style="display: none;">
+                <input type="number" class="answer-input" id="answerInput" placeholder="Answer">
+                <button class="submit-button" onclick="submitAnswer()">Submit</button>
+            </div>
+
+            <div class="nails" id="nails" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script src="script.js"> </script>
+
+    <script>
+        function scaleGame() {
+            const game = document.querySelector(".game-container");
+            const wrapper = document.querySelector(".scale-wrapper");
+
+            const gameWidth = 780;
+            const gameHeight = 750;
+
+            const scaleX = wrapper.clientWidth / gameWidth;
+            const scaleY = wrapper.clientHeight / gameHeight;
+
+            // Maintain aspect ratio
+            const scale = Math.min(scaleX, scaleY);
+
+            // Calculate center offsets
+            const offsetX = (wrapper.clientWidth - gameWidth * scale) / 2;
+            const offsetY = (wrapper.clientHeight - gameHeight * scale) / 2;
+
+            game.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+            game.style.transformOrigin = "top left";
+        }
+
+
+        window.addEventListener("resize", scaleGame);
+        window.addEventListener("load", scaleGame);
+    </script>
+</body>
+
+</html>
