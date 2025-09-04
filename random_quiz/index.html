@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Quiz Adventure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="scale-wrapper">
+        <div class="game-container">
+            <button class="home-btn" onclick="goHome()">🏠 Home</button>
+
+            <div class="floating-stars"></div>
+            <canvas id="character-canvas" width="780" height="750"></canvas>
+
+            <!-- Start Screen -->
+            <div class="screen active" id="start-screen">
+                <div class="start-screen">
+                    <h1 class="game-title">🌟 Fun Quiz Adventure! 🌟</h1>
+                    <p style="font-size: 20px; margin-bottom: 20px;">Test your knowledge with 20 exciting questions!</p>
+                    <button class="start-btn" onclick="startGame()">🚀 Start Adventure!</button>
+                </div>
+            </div>
+
+            <!-- Quiz Screen -->
+            <div class="screen" id="quiz-screen">
+                <div class="quiz-screen">
+                    <div class="stats">
+                        <div class="question-counter">Question: <span id="current-question">1</span>/20</div>
+                        <div class="score">Score: <span id="score">0</span></div>
+                        <div class="timer">Time: <span id="timer">00:00</span></div>
+                    </div>
+
+                    <div class="question-container">
+                        <div class="question" id="question"></div>
+                        <div class="options" id="options"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- End Screen -->
+            <div class="screen" id="end-screen">
+                <div class="end-screen">
+                    <h2 class="final-score">🎉 Quiz Complete! 🎉</h2>
+                    <div class="stats-summary">
+                        <h3>Your Results:</h3>
+                        <p>Final Score: <span id="final-score">0</span>/20</p>
+                        <p>Time Taken: <span id="final-time">00:00</span></p>
+                        <p>Correct Answers: <span id="correct-count">0</span></p>
+                        <p>Wrong Answers: <span id="wrong-count">0</span></p>
+                    </div>
+                    <button class="play-again-btn" onclick="resetGame()">🔄 Play Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+       function scaleGame() {
+    const game = document.querySelector(".game-container");
+    const wrapper = document.querySelector(".scale-wrapper");
+
+    const gameWidth = 780;
+    const gameHeight = 750;
+
+    const scaleX = wrapper.clientWidth / gameWidth;
+    const scaleY = wrapper.clientHeight / gameHeight;
+
+    // Maintain aspect ratio
+    const scale = Math.min(scaleX, scaleY);
+
+    // Calculate center offsets
+    const offsetX = (wrapper.clientWidth - gameWidth * scale) / 2;
+    const offsetY = (wrapper.clientHeight - gameHeight * scale) / 2;
+
+    game.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+    game.style.transformOrigin = "top left";
+}
+
+
+        window.addEventListener("resize", scaleGame);
+        window.addEventListener("load", scaleGame);
+    </script>
+</body>
+
+</html>
