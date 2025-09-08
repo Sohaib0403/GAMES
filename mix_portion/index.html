@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Witch's Potion Puzzle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="outerWrapper">
+        <div class="game-container">
+            <div class="stars"></div>
+
+            <!-- 3D Animation Container -->
+            <div class="three-container" id="three-container"></div>
+
+            <!-- Brewing Overlay -->
+            <div class="brewing-overlay" id="brewing-overlay">
+                <div class="brewing-text" id="brewing-text">Mixing magical ingredients...</div>
+            </div>
+
+            <!-- Start Screen -->
+            <div class="screen start-screen active">
+                <div class="witch-icon">🧙‍♀️</div>
+                <h1>Witch's Potion Puzzle</h1>
+                <p style="color: #9c27b0; font-size: 1.2rem; margin-bottom: 20px;">Help the friendly witch brew magical
+                    potions!</p>
+                <p style="color: #ccc; margin-bottom: 30px;">Match the ingredients to create the perfect potion</p>
+                <button class="start-btn" onclick="startGame()">🧪 Start Brewing 🧪</button>
+            </div>
+
+            <!-- Game Screen -->
+            <div class="screen game-screen">
+                <button class="home-btn" onclick="goHome()">🏠 Home</button>
+
+                <div class="game-header">
+                    <div class="level-indicator">Level: <span id="level">1</span></div>
+                    <div class="lives" id="lives">
+                        <span class="heart">❤️</span>
+                        <span class="heart">❤️</span>
+                        <span class="heart">❤️</span>
+                        <span class="heart">❤️</span>
+                        <span class="heart">❤️</span>
+                        <span class="heart">❤️</span>
+                    </div>
+                </div>
+
+                <div class="witch-character">
+                    <div class="witch-face">🧙‍♀️</div>
+                    <div class="witch-text" id="witch-text">Welcome, young alchemist! Help me brew a magical potion!
+                    </div>
+                </div>
+
+                <div class="recipe">
+                    <h3>🧪 Required Recipe</h3>
+                    <div class="target-ingredients" id="target-ingredients"></div>
+                </div>
+
+                <div class="ingredients-panel" id="ingredients-panel"></div>
+
+                <div class="cauldron">
+                    <div class="cauldron-icon">🔮</div>
+                    <div class="current-potion" id="current-potion"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-btn" id="clear-btn" onclick="clearPotion()">Clear Cauldron</button>
+                    <button class="action-btn" id="brew-btn" onclick="brewPotion()">🧪 Brew Potion!</button>
+                </div>
+            </div>
+
+            <!-- Congratulations Screen -->
+            <div class="screen end-screen congratulations">
+                <div class="witch-icon">🧙‍♀️✨</div>
+                <h2>Congratulations!</h2>
+                <div class="final-message">You've mastered the art of potion brewing!</div>
+                <div class="score">Final Score: <span id="final-score">0</span></div>
+                <button class="start-btn" onclick="goHome()">🏠 Return Home</button>
+                <button class="start-btn" onclick="startGame()" style="margin-left: 10px;">🔄 Play Again</button>
+            </div>
+
+            <!-- Game Over Screen -->
+            <div class="screen end-screen game-over">
+                <div class="witch-icon">🧙‍♀️💀</div>
+                <h2>Game Over!</h2>
+                <div class="final-message">The witch's patience has run out... Try again!</div>
+                <div class="score">Final Score: <span id="game-over-score">0</span></div>
+                <button class="start-btn" onclick="goHome()">🏠 Return Home</button>
+                <button class="start-btn" onclick="startGame()" style="margin-left: 10px;">🔄 Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"> </script>
+    <script>
+      function resizeGame() {
+  const gameContainer = document.querySelector(".game-container");
+  const outerWrapper = document.getElementById("outerWrapper");
+
+  const gameWidth = 780;   // original width
+  const gameHeight = 750;  // original height
+
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+
+  // scale factor
+  const scale = Math.min(windowWidth / gameWidth, windowHeight / gameHeight);
+
+  // apply scale
+  gameContainer.style.transform = `scale(${scale})`;
+
+  // center the scaled game inside the wrapper
+  outerWrapper.style.width = `${windowWidth}px`;
+  outerWrapper.style.height = `${windowHeight}px`;
+
+  // offset so scaled game stays centered
+  const offsetX = (windowWidth - gameWidth * scale) / 2;
+  const offsetY = (windowHeight - gameHeight * scale) / 2;
+  gameContainer.style.position = "absolute";
+  gameContainer.style.left = `${offsetX}px`;
+  gameContainer.style.top = `${offsetY}px`;
+}
+
+window.addEventListener("load", resizeGame);
+window.addEventListener("resize", resizeGame);
+
+
+    </script>
+</body>
+
+</html>
