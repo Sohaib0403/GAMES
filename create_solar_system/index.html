@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Witch's Potion Puzzle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="outerWrapper">
+        <div class="game-container">
+            <div class="container">
+
+        <div class="controls" id="controlsSection">
+            <h1>
+  <span class="toggle" title="Toggle Controls">
+    <!-- Menu (hamburger) icon SVG -->
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="vertical-align: middle;">
+      <rect y="6" width="28" height="3.5" rx="1.5" fill="#4ecdc4"/>
+      <rect y="13" width="28" height="3.5" rx="1.5" fill="#ff6b6b"/>
+      <rect y="20" width="28" height="3.5" rx="1.5" fill="#4ecdc4"/>
+    </svg>
+  </span>
+  Solar System Builder
+</h1>
+            <div id="controlsInner">
+                <div class="action-buttons">
+                    <button class="button undo-btn" onclick="undo()" id="undoBtn">↶ Undo</button>
+                    <button class="button redo-btn" onclick="redo()" id="redoBtn">↷ Redo</button>
+                </div>
+                
+                <div class="control-group">
+                    <label>Object Type:</label>
+                    <select id="objectType" onchange="updateControls()">
+                        <option value="sun">☀️ Sun</option>
+                        <option value="planet">🌍 Planet</option>
+                        <option value="orbit">⭕ Orbit</option>
+                        <option value="star">⭐ Star</option>
+                    </select>
+                </div>
+                
+                <div class="control-group" id="sizeControl">
+                    <label>Size:</label>
+                    <div class="slider-container">
+                        <div class="slider-label">
+                            <span>Small</span>
+                            <span id="sizeValue">20</span>
+                            <span>Large</span>
+                        </div>
+                        <input type="range" id="sizeSlider" min="5" max="50" value="20" oninput="updateSizeValue()">
+                    </div>
+                </div>
+                
+                <div class="control-group" id="speedControl" style="display: none;">
+                    <label>Rotation Speed:</label>
+                    <div class="slider-container">
+                        <div class="slider-label">
+                            <span>Slow</span>
+                            <span id="speedValue">1</span>
+                            <span>Fast</span>
+                        </div>
+                        <input type="range" id="speedSlider" min="0.1" max="3" step="0.1" value="1" oninput="updateSpeedValue()">
+                    </div>
+                </div>
+                
+                <button class="button add-btn" onclick="addObject()" id="addBtn">Add Object</button>
+                
+                <button class="button submit-btn" onclick="startSimulation()" id="submitBtn">🚀 Start Simulation</button>
+                
+                <button class="button restart-btn" onclick="restart()" id="restartBtn" style="display: none;">🔄 Restart</button>
+                
+                <div class="status building" id="status">Building Mode - Click to add objects</div>
+                
+                <div class="instructions">
+                    <h3>🎯 Instructions:</h3>
+                    <ul>
+                        <li>Add a sun first as the center</li>
+                        <li>Add orbits around the sun</li>
+                        <li>Add planets to orbits (1 per orbit)</li>
+                        <li>Add stars for decoration</li>
+                        <li>Adjust size and speed with sliders</li>
+                        <li>Click "Start Simulation" to see it work!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="canvas-toolbar">
+  <button id="zoomInBtn" title="Zoom In">
+    <!-- Plus icon SVG -->
+    <svg width="24" height="24" viewBox="0 0 24 24"><rect x="10" y="4" width="4" height="16" fill="#4ecdc4"/><rect x="4" y="10" width="16" height="4" fill="#4ecdc4"/></svg>
+  </button>
+  <button id="zoomOutBtn" title="Zoom Out">
+    <!-- Minus icon SVG -->
+    <svg width="24" height="24" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="4" fill="#ff6b6b"/></svg>
+  </button>
+</div>
+        
+        <div class="canvas-container">
+            <canvas id="spaceCanvas" width="780" height="750"></canvas>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"> </script>
+    <script>
+      function resizeGame() {
+  const gameContainer = document.querySelector(".game-container");
+  const outerWrapper = document.getElementById("outerWrapper");
+
+  const gameWidth = 780;   // original width
+  const gameHeight = 750;  // original height
+
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+
+  // scale factor
+  const scale = Math.min(windowWidth / gameWidth, windowHeight / gameHeight);
+
+  // apply scale
+  gameContainer.style.transform = `scale(${scale})`;
+
+  // center the scaled game inside the wrapper
+  outerWrapper.style.width = `${windowWidth}px`;
+  outerWrapper.style.height = `${windowHeight}px`;
+
+  // offset so scaled game stays centered
+  const offsetX = (windowWidth - gameWidth * scale) / 2;
+  const offsetY = (windowHeight - gameHeight * scale) / 2;
+  gameContainer.style.position = "absolute";
+  gameContainer.style.left = `${offsetX}px`;
+  gameContainer.style.top = `${offsetY}px`;
+}
+
+window.addEventListener("load", resizeGame);
+window.addEventListener("resize", resizeGame);
+
+
+    </script>
+</body>
+
+</html>
