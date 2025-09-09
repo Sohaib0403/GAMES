@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Shooter Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="780" height="750"></canvas>
+        
+        <div class="ui-overlay">
+            <div class="hearts" id="hearts">❤️❤️❤️❤️❤️❤️</div>
+            <div class="health-bar">
+                <div class="health-fill" id="healthFill" style="width: 100%"></div>
+            </div>
+            <div class="score" id="score">Score: 0</div>
+        </div>
+        
+        <div class="screen" id="startScreen">
+            <h1>🚀 SPACE SHOOTER 🚀</h1>
+            <div class="instructions">
+                <p>🔥 Defend Earth from alien invasion! 🔥</p>
+                <p>• Use A/D or Arrow Keys to move</p>
+                <p>• Press SPACE to shoot</p>
+                <p>• Destroy enemy ships for points</p>
+                <p>• Avoid enemy bullets!</p>
+            </div>
+            <button onclick="startGame()">START MISSION</button>
+        </div>
+        
+        <div class="screen" id="gameOverScreen" style="display: none;">
+            <h1>💥 MISSION FAILED 💥</h1>
+            <h2 id="finalScore">Final Score: 0</h2>
+            <button onclick="restartGame()">RETRY MISSION</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function resizeGame() {
+    const gameContainer = document.querySelector(".game-container");
+
+    // Original game size
+    const gameWidth = 780;
+    const gameHeight = 750;
+
+    // Available screen space
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    // Scale ratio based on width/height
+    const scaleX = windowWidth / gameWidth;
+    const scaleY = windowHeight / gameHeight;
+
+    // Pick the smaller one to preserve aspect ratio
+    const scale = Math.min(scaleX, scaleY);
+
+    // Apply scaling via transform
+    gameContainer.style.transform = `scale(${scale})`;
+    gameContainer.style.transformOrigin = "top left";
+
+    // Center it on screen
+    gameContainer.style.position = "absolute";
+    gameContainer.style.left = `${(windowWidth - gameWidth * scale) / 2}px`;
+    gameContainer.style.top = `${(windowHeight - gameHeight * scale) / 2}px`;
+}
+
+// Run once and on resize
+window.addEventListener("resize", resizeGame);
+window.addEventListener("load", resizeGame);
+
+    </script>
+</body>
+</html>
