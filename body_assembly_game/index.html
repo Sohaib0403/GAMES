@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Witch's Potion Puzzle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="outerWrapper">
+      <div class="game-container">
+        <!-- Start Screen -->
+        <div class="screen start-screen" id="startScreen">
+            <h1>🧬 Human Body Assembly</h1>
+            <p style="margin-bottom: 2rem; font-size: 1.1rem;">Build a complete human body and learn anatomy!</p>
+            <button class="play-btn" onclick="startGame()">🎮 Play Game</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div class="screen game-screen hidden" id="gameScreen">
+             <button class="home-btn" onclick="goHome()">🏠 Home</button>
+            <div class="game-header">
+               
+                <div class="stats">
+                    <div class="stat">Score: <span id="score">0</span></div>
+                    <div class="stat">Lives: <span id="lives">3</span> ❤️</div>
+                </div>
+            </div>
+            
+            <div class="instructions">
+                <strong>How to play:</strong><br>
+                Drag body parts from the right panel to the correct positions on the human body outline!
+            </div>
+            
+            <div class="game-area">
+                <div class="human-body-container">
+                    <div class="human-body">
+                        <div class="body-outline"></div>
+                        
+                        <!-- Drop zones for each body part -->
+                        <div class="drop-zone head-zone" data-part="head">Head</div>
+                        <div class="drop-zone neck-zone" data-part="neck">Neck</div>
+                        <div class="drop-zone torso-zone" data-part="torso">Torso</div>
+                        <div class="drop-zone left-arm-zone" data-part="left-arm">L.Arm</div>
+                        <div class="drop-zone right-arm-zone" data-part="right-arm">R.Arm</div>
+                        <div class="drop-zone left-hand-zone" data-part="left-hand">L.Hand</div>
+                        <div class="drop-zone right-hand-zone" data-part="right-hand">R.Hand</div>
+                        <div class="drop-zone waist-zone" data-part="waist">Waist</div>
+                        <div class="drop-zone left-leg-zone" data-part="left-leg">L.Leg</div>
+                        <div class="drop-zone right-leg-zone" data-part="right-leg">R.Leg</div>
+                        <div class="drop-zone left-foot-zone" data-part="left-foot">L.Foot</div>
+                        <div class="drop-zone right-foot-zone" data-part="right-foot">R.Foot</div>
+                    </div>
+                </div>
+                
+                <div class="body-parts-panel">
+                    <h4>Body Parts</h4>
+                    <div class="body-part" draggable="true" data-part="head">🧠 Head</div>
+                    <div class="body-part" draggable="true" data-part="neck">🦴 Neck</div>
+                    <div class="body-part" draggable="true" data-part="torso">🫁 Torso</div>
+                    <div class="body-part" draggable="true" data-part="left-arm">💪 Left Arm</div>
+                    <div class="body-part" draggable="true" data-part="right-arm">💪 Right Arm</div>
+                    <div class="body-part" draggable="true" data-part="left-hand">🤚 Left Hand</div>
+                    <div class="body-part" draggable="true" data-part="right-hand">🤚 Right Hand</div>
+                    <div class="body-part" draggable="true" data-part="waist">🫃 Waist</div>
+                    <div class="body-part" draggable="true" data-part="left-leg">🦵 Left Leg</div>
+                    <div class="body-part" draggable="true" data-part="right-leg">🦵 Right Leg</div>
+                    <div class="body-part" draggable="true" data-part="left-foot">🦶 Left Foot</div>
+                    <div class="body-part" draggable="true" data-part="right-foot">🦶 Right Foot</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End Screen -->
+        <div class="screen end-screen hidden" id="endScreen">
+            <h2>🎉 Game Complete!</h2>
+            <div class="final-stats">
+                <h3>Final Score: <span id="finalScore">0</span></h3>
+                <p>Lives Remaining: <span id="finalLives">0</span></p>
+                <p id="completionMessage"></p>
+            </div>
+            <button class="restart-btn" onclick="restartGame()">🔄 Play Again</button>
+        </div>
+
+        <!-- Quiz Popup -->
+        <div class="popup hidden" id="quizPopup">
+            <h3 id="quizQuestion"></h3>
+            <div id="quizOptions"></div>
+        </div>
+
+        <!-- Result Popups -->
+        <div class="popup hidden" id="correctPopup">
+            <h3>🎉 Correct!</h3>
+            <p>+10 Points!</p>
+            <button onclick="hidePopup('correctPopup')">Continue</button>
+        </div>
+
+        <div class="popup hidden" id="wrongPopup">
+            <h3>❌ Wrong!</h3>
+            <p>Better luck next time!</p>
+            <button onclick="hidePopup('wrongPopup')">Continue</button>
+        </div>
+
+        <div class="popup hidden" id="wrongPlacementPopup">
+            <h3>💥 Wrong Place!</h3>
+            <p>-1 Life! Try again!</p>
+            <button onclick="hidePopup('wrongPlacementPopup')">Continue</button>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"> </script>
+    <script>
+      function resizeGame() {
+  const gameContainer = document.querySelector(".game-container");
+  const outerWrapper = document.getElementById("outerWrapper");
+
+  const gameWidth = 780;   // original width
+  const gameHeight = 750;  // original height
+
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+
+  // scale factor
+  const scale = Math.min(windowWidth / gameWidth, windowHeight / gameHeight);
+
+  // apply scale
+  gameContainer.style.transform = `scale(${scale})`;
+
+  // center the scaled game inside the wrapper
+  outerWrapper.style.width = `${windowWidth}px`;
+  outerWrapper.style.height = `${windowHeight}px`;
+
+  // offset so scaled game stays centered
+  const offsetX = (windowWidth - gameWidth * scale) / 2;
+  const offsetY = (windowHeight - gameHeight * scale) / 2;
+  gameContainer.style.position = "absolute";
+  gameContainer.style.left = `${offsetX}px`;
+  gameContainer.style.top = `${offsetY}px`;
+}
+
+window.addEventListener("load", resizeGame);
+window.addEventListener("resize", resizeGame);
+
+
+    </script>
+</body>
+
+</html>
